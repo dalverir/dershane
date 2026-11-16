@@ -892,7 +892,7 @@ function impHesap(){
     if(/^(toplam|ortalama|genel|kurum|sube|sınıf)\b/i.test(ad)&&!no)return;
     const c={};let dolu=false;
     if(IMP.mod==='cevap'){const kit=(hucre(r,m.kit).toUpperCase().match(/[A-D]/)||['A'])[0];const an=s.anahtar||{};const key=an[kit]||an.A;if(!key){anahtarYok++;return}
-      const cv=hucre(r,m.cevap).toUpperCase();if(!cv)return;dolu=true;let p=0;
+      const cv=(m.cevap>=0?String(r[m.cevap]==null?'':r[m.cevap]):'').replace(/[\r\n]+$/,'').toUpperCase();if(!cv.trim())return;dolu=true;let p=0;
       t.dersler.forEach(([d,q])=>{let D=0,Y=0;for(let i=0;i<q;i++,p++){const k=key[p]||' ',a=cv[p]||' ';if(k==='X'||k==='*'){D++;continue}if(!/[A-E]/.test(a))continue;if(a===k)D++;else Y++}c[d]={d:D,y:Y}})}
     else{t.dersler.forEach(([d,q])=>{const mm=m.ders[d];const D=mm.d>=0?num(r[mm.d]):null,Y=mm.y>=0?num(r[mm.y]):null,N=mm.n>=0?num(r[mm.n]):null;let v=null;
       if(D!=null&&Y!=null)v={d:D,y:Y};else if(D!=null&&N!=null)v={d:D,y:t.f?Math.max(0,Math.round((D-N)*t.f*100)/100):0};else if(N!=null)v={d:N,y:0};else if(D!=null)v={d:D,y:0};

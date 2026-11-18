@@ -196,6 +196,18 @@ tr.buhafta td{background:#FBF7EA}
 .renkler{display:flex;gap:8px;flex-wrap:wrap}.renk{width:34px;height:34px;border-radius:50%;border:3px solid transparent;cursor:pointer;box-shadow:0 0 0 1px var(--line)}.renk.on{border-color:var(--surface);box-shadow:0 0 0 2px var(--text)}
 .onizle{border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:12px;max-width:320px}.oz-top{background:#fff;padding:6px 10px;border-bottom:1px solid #E2E0DA;color:#1C1F24}.oz-body{display:flex;height:84px;background:#F6F5F2}.oz-side{width:70px;background:#fff;padding:8px 6px;display:flex;flex-direction:column;gap:5px;border-right:1px solid #E2E0DA}.oz-side i{height:8px;border-radius:3px;background:#E2E0DA}.oz-side i.on{background:var(--p)}.oz-side.koyu{background:var(--p)}.oz-side.koyu i{background:rgba(255,255,255,.3)}.oz-side.koyu i.on{background:#fff}.oz-main{flex:1;padding:10px}.oz-card{background:#fff;border:1px solid #E2E0DA;border-radius:6px;padding:10px;display:flex;gap:8px;align-items:center}.oz-btn{background:var(--p);color:#fff;border-radius:5px;padding:3px 9px}.oz-tag{border:1px solid var(--p);color:var(--p);border-radius:10px;padding:1px 7px}
 @media (max-width:760px){.card{overflow-x:auto}.card table td,.card table th{word-break:break-word}td.tk{height:64px;padding:2px}.te{font-size:10px;padding:1px 3px}header.top .rolsel{max-width:150px}header.top .who{gap:6px}}
+.fh{font-size:14px;margin:16px 0 8px;padding-top:10px;border-top:1px solid var(--line2);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.ucret-kutu{border:1px solid var(--line2);border-radius:8px;padding:12px 14px;margin:14px 0}
+.ucret-oz{padding:8px 10px;background:var(--accent-weak);border-radius:6px;line-height:1.7}
+.dg-kart{display:flex;gap:14px;align-items:center}
+.dg-e{font-size:30px;line-height:1}
+.dg-buyuk{background:linear-gradient(120deg,var(--accent-weak),transparent);border-color:var(--accent)}
+.dg-buyuk .dg-e{font-size:44px;animation:dgz 1.6s ease-in-out infinite}
+@keyframes dgz{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(8deg) scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.dg-buyuk .dg-e{animation:none}}
+.sozlesme{font-size:12px}.sozlesme .pt td,.sozlesme .pt th{padding:3px 6px}.sozlesme h3{font-size:13px}
+.ara-mini{text-decoration:none;margin-left:4px;font-size:14px}
+.kv.kv-dar{grid-template-columns:70px 1fr;font-size:14px}
 @media print{#app,#modal,#toast,#surum-bar{display:none!important}#print-area{display:block}body{background:#fff;font-size:13px}.pk{page-break-after:always;padding:6mm 4mm}.pk:last-child{page-break-after:auto}.bar>i,.tag{-webkit-print-color-adjust:exact;print-color-adjust:exact}.pt{width:100%;border-collapse:collapse}.pt td,.pt th{border:1px solid #ddd;padding:4px 6px}}
 @media (max-width:820px){
   .wrap{display:block}
@@ -229,7 +241,7 @@ const SUNUCU = {
   url: 'https://ukoxvhkkqwxhwbrkpxdr.supabase.co',
   anahtar: 'sb_publishable_fkB7MTdx_DVlSd_Nr0ZwtA_vCq2UOTl'
 };
-const SURUM='4.1.0';
+const SURUM='4.2.0';
 const ONLINE=!!(SUNUCU.url&&SUNUCU.anahtar);
 const DEMO=!ONLINE&&/[?&]demo\b/.test(location.search);
 const EPOSTA=k=>`${k}@dershane.example.com`;
@@ -273,7 +285,7 @@ const dersNet=(r,f)=>r?(r.d-(f?r.y/f:0)):0;
 const toplamNet=(s,sn)=>{const t=turOf(sn);return t.dersler.reduce((a,[ad])=>a+dersNet(s.c[ad],t.f),0)};
 const ayniTur=(ss,sn)=>ss.filter(x=>turKey(x)===turKey(sn));
 function siraHesapla(sn,liste){const rr=liste.filter(r=>r.sinavId===sn.id).map(r=>({r,n:toplamNet(r,sn)})).sort((a,b)=>b.n-a.n);rr.forEach(x=>{x.r.sira=rr.findIndex(y=>y.n<=x.n+1e-9)+1;x.r.katilim=rr.length})}
-const bosVeri=()=>({v:1,subeler:[],ogretmenler:[],ogrenciler:[],veliler:[],dersler:[],yoklamalar:[],sinavlar:[],sonuclar:[],taksitler:[],checkinler:[],gorusmeler:[],etutler:[],odevler:[],duyurular:[],mesajlar:[],bildirimler:[],etkinlikler:[],randevular:[],soru_hedefleri:[],soru_kayitlari:[],kazanimlar:[],gruplar:[],grup_mesajlari:[],gorevler:[],mufredat:[],islenen:[],ders_durum:[],talepler:[],arsiv:[],riskler:{},profiller:{},burslar:{},fotolar:{},_yon:[{k:'yonetici:y1',ad:'Müdür'}],ayarlar:{kurum:'Dershane',dersSure:40,noKural:'sira',veliDevamBildirim:true,etutTalep:true,yksTarih:`${new Date().getFullYear()+(new Date().getMonth()>=7?1:0)}-06-19`,lgsTarih:`${new Date().getFullYear()+(new Date().getMonth()>=7?1:0)}-06-13`,etutHak:2}});
+const bosVeri=()=>({v:1,subeler:[],ogretmenler:[],ogrenciler:[],veliler:[],dersler:[],yoklamalar:[],sinavlar:[],sonuclar:[],taksitler:[],checkinler:[],gorusmeler:[],etutler:[],odevler:[],duyurular:[],mesajlar:[],bildirimler:[],etkinlikler:[],randevular:[],soru_hedefleri:[],soru_kayitlari:[],kazanimlar:[],gruplar:[],grup_mesajlari:[],gorevler:[],mufredat:[],islenen:[],ders_durum:[],talepler:[],arsiv:[],riskler:{},profiller:{},burslar:{},fotolar:{},kisisel:{},ucretler:{},_yon:[{k:'yonetici:y1',ad:'Müdür'}],ayarlar:{kurum:'Dershane',dersSure:40,noKural:'sira',veliDevamBildirim:true,etutTalep:true,yksTarih:`${new Date().getFullYear()+(new Date().getMonth()>=7?1:0)}-06-19`,lgsTarih:`${new Date().getFullYear()+(new Date().getMonth()>=7?1:0)}-06-13`,etutHak:2}});
 
 /* ---------- demo veri ---------- */
 function seed(){
@@ -381,6 +393,7 @@ function seed(){
   odevler.forEach(h=>{const ogs=ogrenciler.filter(o=>o.subeId===h.subeId);if(ogs[2]&&!h.teslim[ogs[2].id])h.teslim[ogs[2].id]='yapmadi'});
   gorusmeler.forEach(g=>{g.kayit=g.tarih+'T10:00:00';if(g.veliNotu)g.veliNotuGonder=true});
   const o4=ogrenciler.find(o=>o.id==='o4');if(o4)o4.subeGecmis=[{eski:'s12b',yeni:o4.subeId,tarih:addDays(TODAY,-40),neden:'Alan değişikliği',yapan:'rehber:t5'}];
+  demo42(D0);
   const eS=S;S=D0;try{otoGruplar()}catch(e){console.error(e)}S=eS;
   const g12=D0.gruplar.find(g=>g.oto==='sube:s12a'),gz=D0.gruplar.find(g=>g.oto==='zumre:Matematik');
   if(g12)D0.grup_mesajlari.push({id:'gm1',grupId:g12.id,from:'ogretmen:t1',metin:'Yarınki derse türev test 1-3’ü bitirip gelin.',zaman:addDays(TODAY,-1)+'T16:05'},{id:'gm2',grupId:g12.id,from:'ogrenci:o1',metin:'Hocam 2. testteki 14. soruyu derste çözebilir miyiz?',zaman:addDays(TODAY,-1)+'T19:42'});
@@ -392,29 +405,30 @@ function seed(){
 const KEY='dershane.v1',OKEY='dershane.oturum';
 let S,O,MEM={};
 const ls={get:k=>{try{return localStorage.getItem(k)}catch(e){return MEM[k]||null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){MEM[k]=v}}};
-function load(){try{S=JSON.parse(ls.get(KEY))}catch(e){S=null}if(!S||S.v!==1){S=seed();save()}const B=bosVeri();S={...B,...S,ayarlar:{...B.ayarlar,...S.ayarlar}};arsivAyir(S);try{O=JSON.parse(ls.get(OKEY))}catch(e){O=null}}
+function load(){try{S=JSON.parse(ls.get(KEY))}catch(e){S=null}if(!S||S.v!==1){S=seed();save()}const eski42=!S.kisisel;const B=bosVeri();S={...B,...S,ayarlar:{...B.ayarlar,...S.ayarlar}};arsivAyir(S);if(eski42){try{demo42(S)}catch(e){console.error(e)}}try{telTasi()}catch(e){};try{O=JSON.parse(ls.get(OKEY))}catch(e){O=null}}
 function save(){if(O&&O.role==='yonetici'&&S&&!KURULUMSUZ){try{otoGruplar()}catch(e){console.error(e)}}if(ONLINE){clearTimeout(syncT);syncT=setTimeout(()=>{syncT=null;sync()},250);return}const k={...S,ogrenciler:[...S.ogrenciler,...(S.arsiv||[])],arsiv:[]};delete k._yon;ls.set(KEY,JSON.stringify(k))}
 function saveO(){ls.set(OKEY,JSON.stringify(O))}
 
 /* ---------- sunucu (Supabase) ---------- */
 const DIZI=['etkinlikler','randevular','soru_hedefleri','soru_kayitlari','kazanimlar','subeler','ogretmenler','ogrenciler','veliler','dersler','yoklamalar','sinavlar','sonuclar','taksitler','checkinler','etutler','odevler','duyurular','mesajlar','bildirimler','gruplar','grup_mesajlari','gorevler','mufredat','islenen','ders_durum','talepler'];
-const HARITA=['riskler','profiller','burslar','fotolar'];
+const HARITA=['riskler','profiller','burslar','fotolar','kisisel','ucretler'];
 const YENI6=new Set(['etkinlikler','randevular','soru_hedefleri','soru_kayitlari','kazanimlar']);
-const YENI_TABLO=new Set(['etkinlikler','randevular','soru_hedefleri','soru_kayitlari','kazanimlar','burslar','fotolar','gruplar','grup_mesajlari','gorevler','mufredat','islenen','ders_durum','talepler']);
+const YENI7=new Set(['kisisel','ucretler']);
+const YENI_TABLO=new Set(['kisisel','ucretler','etkinlikler','randevular','soru_hedefleri','soru_kayitlari','kazanimlar','burslar','fotolar','gruplar','grup_mesajlari','gorevler','mufredat','islenen','ders_durum','talepler']);
 const TABLOLAR=[...DIZI,...HARITA,'ayarlar','gorusmeler','gorusme_ozetleri','veli_notlari'];
 const P3=['yonetici','ogretmen','rehber'];
-const YAZ={etkinlikler:['yonetici','rehber'],randevular:['rehber'],soru_hedefleri:P3,soru_kayitlari:['ogrenci','yonetici','ogretmen','rehber'],kazanimlar:P3,subeler:['yonetici'],ogretmenler:['yonetici'],ogrenciler:['yonetici','rehber'],veliler:['yonetici'],dersler:['yonetici','rehber'],ayarlar:['yonetici'],burslar:['yonetici'],taksitler:['yonetici'],
+const YAZ={etkinlikler:['yonetici','rehber'],randevular:['rehber'],soru_hedefleri:P3,soru_kayitlari:['ogrenci','yonetici','ogretmen','rehber'],kazanimlar:P3,subeler:['yonetici'],ogretmenler:['yonetici'],ogrenciler:['yonetici','rehber'],veliler:['yonetici'],dersler:['yonetici','rehber'],ayarlar:['yonetici'],burslar:['yonetici'],kisisel:['yonetici'],ucretler:['yonetici'],taksitler:['yonetici'],
   sinavlar:['yonetici','rehber'],sonuclar:['yonetici','rehber'],yoklamalar:P3,duyurular:P3,etutler:P3,odevler:P3,bildirimler:P3,gorevler:P3,islenen:P3,ders_durum:P3,gruplar:P3,mufredat:P3,
   mesajlar:'*',grup_mesajlari:'*',fotolar:'*',checkinler:['rehber','ogrenci'],talepler:['ogrenci','rehber','yonetici'],riskler:['rehber'],profiller:['rehber'],gorusmeler:['rehber'],gorusme_ozetleri:['rehber'],veli_notlari:['rehber']};
 const yazabilir=t=>{const y=YAZ[t];return y==='*'||(y||[]).includes(O.role)};
-let GUNCELLEME_GEREKLI=false,GUNCELLEME6=false;
+let GUNCELLEME_GEREKLI=false,GUNCELLEME6=false,GUNCELLEME7=false;
 function scriptYukle(src){return new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>no(new Error('Kütüphane yüklenemedi'));document.head.appendChild(s)})}
 function durum(t){DURUM=t;const el=$('#durum');if(el)el.textContent=t}
 async function rpc(ad,args){const {data,error}=await sb.rpc(ad,args||{});if(error)throw new Error(error.message);return data}
 function satir(t,o,id){const r={id:String(id||o.id),veri:o,ogr_id:(o&&o.ogrId)||null,sahip:null,alici:null};
   if(t==='mesajlar'){r.sahip=o.from;r.alici=o.to}
   if(t==='bildirimler')r.sahip=o.kime||('veli:'+o.veliId);
-  if(t==='riskler'||t==='profiller'||t==='burslar')r.ogr_id=String(id);
+  if(t==='riskler'||t==='profiller'||t==='burslar'||t==='ucretler')r.ogr_id=String(id);
   if(t==='fotolar')r.sahip=String(id);
   if(t==='duyurular')r.sahip=o.yazar||null;
   if(t==='gruplar')r.sahip=o.olusturan||null;
@@ -441,11 +455,11 @@ function satirlar(){
   return M;
 }
 async function hepsiniCek(t){let out=[],from=0;for(;;){const {data,error}=await sb.from(t).select('id,veri,guncelleme').range(from,from+999);
-  if(error){if(YENI_TABLO.has(t)&&/does not exist|schema cache|not find/i.test(error.message)){if(YENI6.has(t))GUNCELLEME6=true;else GUNCELLEME_GEREKLI=true;return []}throw new Error(t+': '+error.message)}
+  if(error){if(YENI_TABLO.has(t)&&/does not exist|schema cache|not find/i.test(error.message)){if(YENI7.has(t))GUNCELLEME7=true;else if(YENI6.has(t))GUNCELLEME6=true;else GUNCELLEME_GEREKLI=true;return []}throw new Error(t+': '+error.message)}
   out=out.concat(data);if(data.length<1000)break;from+=1000}if(ANLIK.includes(t)){let m=null;out.forEach(r=>{if(r.guncelleme&&(!m||r.guncelleme>m))m=r.guncelleme});_sonG[t]=m}return out}
 function arsivAyir(N){N.arsiv=N.ogrenciler.filter(o=>o.arsiv);N.ogrenciler=N.ogrenciler.filter(o=>!o.arsiv);return N}
 async function veriYukle(){
-  GUNCELLEME_GEREKLI=false;GUNCELLEME6=false;
+  GUNCELLEME_GEREKLI=false;GUNCELLEME6=false;GUNCELLEME7=false;
   const R=Object.fromEntries(await Promise.all(TABLOLAR.map(t=>hepsiniCek(t).then(r=>[t,r]))));
   if(O.role==='ogrenci'||O.role==='veli'){try{R.yoklamalar=(await rpc('yoklamalarim'))||[]}catch(e){}}
   const N=bosVeri();DIZI.forEach(t=>{N[t]=R[t].map(x=>x.veri)});
@@ -466,7 +480,7 @@ async function sync(){
   if(syncing){syncAgain=true;return}
   if(!navigator.onLine){cevrimGoster(true);durum('Bağlantı bekleniyor…');return}syncing=true;durum('Kaydediliyor…');let hata=null;
   try{const now=satirlar();
-    for(const t of Object.keys(now)){if(!yazabilir(t)||(GUNCELLEME_GEREKLI&&YENI_TABLO.has(t)&&!YENI6.has(t))||(GUNCELLEME6&&YENI6.has(t)))continue;
+    for(const t of Object.keys(now)){if(!yazabilir(t)||(GUNCELLEME_GEREKLI&&YENI_TABLO.has(t)&&!YENI6.has(t))||(GUNCELLEME6&&YENI6.has(t))||(GUNCELLEME7&&YENI7.has(t)))continue;
       const a=SNAP[t]||new Map(),b=now[t];const yeni=[],degisen=[],silinen=[];
       b.forEach((j,id)=>{if(!a.has(id))yeni.push(JSON.parse(j));else if(a.get(id)!==j)degisen.push(JSON.parse(j))});a.forEach((j,id)=>{if(!b.has(id))silinen.push(id)});
       if(!yeni.length&&!degisen.length&&!silinen.length)continue;
@@ -496,7 +510,7 @@ async function oturumAc(user){
   $('#app').innerHTML='<div class="login"><p class="muted">Veriler yükleniyor…</p></div>';
   try{await veriYukle()}catch(e){$('#app').innerHTML=`<div class="login"><div class="login-in" style="max-width:520px"><div class="card"><h2>Veriler alınamadı</h2><p class="small">${esc(e.message)}</p><p class="small muted">Kurulum rehberindeki 2. adım (veritabanı SQL’i) çalıştırıldı mı?</p><button class="btn" data-act="logout">Çıkış</button></div></div></div>`;return}
   if(O.role==='yonetici'&&KURULUMSUZ)O.page='kurulum';
-  if(O.role==='yonetici'&&!KURULUMSUZ){try{if(otoGruplar())save()}catch(e){console.error(e)}}
+  if(O.role==='yonetici'&&!KURULUMSUZ){try{if(otoGruplar())save()}catch(e){console.error(e)}try{if(telTasi())save()}catch(e){console.error(e)}}
   saveO();render();canliKur();anlikBaslat();sekmeBaslik();
 }
 async function surumKontrol(oto){
@@ -560,7 +574,7 @@ function modal(title,body){$('#modal-box').innerHTML=`<div class="between"><h2 s
 function closeModal(){$('#modal').classList.add('hidden');$('#modal-box').innerHTML=''}
 let PENDING=null;
 function ask(msg,fn){PENDING=fn;modal('Emin misin?',`<p>${esc(msg)}</p><div class="row" style="margin-top:14px"><button class="btn primary" data-act="ask-yes">Evet</button><button class="btn" data-act="close">Vazgeç</button></div>`)}
-const head=(t,sub,act='')=>`<div class="head"><div><h1>${t}</h1>${sub?`<p class="muted" style="margin:0">${sub}</p>`:''}</div><div class="row">${act}</div></div>`;
+const head=(t,sub,act='')=>`<div class="head"><div><h1>${t}</h1>${sub?`<p class="muted" style="margin:0">${sub}</p>`:''}</div><div class="row">${act}</div></div><!--/h-->`;
 const stat=(l,n,s='')=>`<div class="stat"><div class="l">${l}</div><div class="n">${n}</div>${s?`<div class="s">${s}</div>`:''}</div>`;
 const opt=(v,l,sel)=>`<option value="${esc(v)}"${String(v)===String(sel)?' selected':''}>${esc(l)}</option>`;
 const field=(l,inner,h='')=>`<div class="field"><label>${l}</label>${inner}${h?`<div class="hint">${h}</div>`:''}</div>`;
@@ -615,6 +629,7 @@ function shell(content){
   const rol=roller?`<select class="inline-sel rolsel" data-chg="rol-sec" title="Ekran değiştir">${roller.map(r=>opt(r.rol,ROLAD[r.rol]+' ekranı',O.role)).join('')}</select>`:`<span>${ROLAD[O.role]}</span>`;
   const ust=ONLINE?`<span id="durum" class="small">${esc(DURUM)}</span>${bell}<span data-act="sifrem" style="cursor:pointer" title="Hesabım">${av(ME(),benAd(),28)} ${esc(benAd())}</span>${rol}<button class="btn sm" data-act="yenile">Yenile</button><button class="btn sm" data-act="logout">Çıkış</button>`
     :`${bell}<span data-act="sifrem" style="cursor:pointer">${av(ME(),benAd(),28)}</span><select class="inline-sel rolsel" data-chg="demo-rol" title="Sunum: ekran değiştir">${[['yonetici:y1','Müdür'],['rehber:t5','Rehber · '+ogt('t5').ad],['ogretmen:t1','Öğretmen · '+ogt('t1').ad],['ogrenci:o1','Öğrenci · '+ogr('o1').ad],['veli:v1','Veli · '+veli('v1').ad]].filter(([k])=>{const [r,i]=k.split(':');return r==='yonetici'||(r==='veli'?S.veliler.some(v=>v.id===i):r==='ogrenci'?S.ogrenciler.some(o=>o.id===i):S.ogretmenler.some(t=>t.id===i))}).map(([k,l])=>opt(k,l,O.role+':'+O.id)).join('')}${[['yonetici:y1'],['rehber:t5'],['ogretmen:t1'],['ogrenci:o1'],['veli:v1']].some(([k])=>k===O.role+':'+O.id)?'':opt(O.role+':'+O.id,esc(benAd())+' · '+ROLAD[O.role],O.role+':'+O.id)}</select><button class="btn sm" data-act="logout">Çıkış</button>`;
+  if(GUNCELLEME7&&!GUNCELLEME6&&!GUNCELLEME_GEREKLI&&O.role==='yonetici')content=`<div class="banner"><b>Sunucu güncellemesi gerekiyor.</b> TC, doğum tarihi, adres, telefon ve toplam fiyat bilgilerinin kaydedilmesi için Supabase'de <code>7-guncelleme.sql</code> dosyasını çalıştır, sonra “Yenile”ye bas.</div>`+content;
   if(GUNCELLEME6&&!GUNCELLEME_GEREKLI&&O.role==='yonetici')content=`<div class="banner"><b>Sunucu güncellemesi gerekiyor.</b> Takvim, görüşme talebi, soru hedefi ve kazanımların çalışması için Supabase'de <code>6-guncelleme.sql</code> dosyasını çalıştır, sonra “Yenile”ye bas.</div>`+content;
   if(GUNCELLEME_GEREKLI&&O.role==='yonetici')content=`<div class="banner"><b>Sunucu güncellemesi gerekiyor.</b> Yeni özelliklerin (gruplar, görevler, yıllık plan, burs, fotoğraf…) çalışması için Supabase'de <code>5-guncelleme.sql</code> dosyasını çalıştır, sonra “Yenile”ye bas.</div>`+content;
   const alt=ONLINE?(O.role==='yonetici'?'<button class="link" data-act="export">Yedek al</button>':'')
@@ -660,7 +675,7 @@ PAGES.ogrenciler=arg=>{
   if(arg)return ogrDetay(arg);
   const fs=O.f_sube||'';const list=S.ogrenciler.filter(o=>!fs||o.subeId===fs).sort(subeSirali);
   const nosuz=S.ogrenciler.filter(o=>!String(o.no||'').trim()).length;
-  return head('Öğrenciler',`${list.length} öğrenci`,(O.role==='yonetici'?`${nosuz?`<button class="btn" data-act="no-ver">Numarasızlara numara ver (${nosuz})</button>`:''}<button class="btn" data-act="toplu-foto">Toplu fotoğraf</button><button class="btn" data-act="ogr-excel">Excel</button><button class="btn" data-act="ogr-aktar">Excel'den aktar</button><button class="btn primary" data-act="ogr-yeni">Öğrenci ekle</button>`:''))+
+  return head('Öğrenciler',`${list.length} öğrenci`,(O.role==='yonetici'?`${nosuz?`<button class="btn" data-act="no-ver">Numarasızlara numara ver (${nosuz})</button>`:''}<button class="btn" data-act="toplu-foto">Toplu fotoğraf</button><button class="btn" data-act="okul-rapor">Okul raporu</button><button class="btn" data-act="ogr-excel">Excel</button><button class="btn" data-act="ogr-aktar">Excel'den aktar</button><button class="btn primary" data-act="ogr-yeni">Öğrenci ekle</button>`:''))+
   `<div class="card flush"><div class="row" style="padding:14px 16px;border-bottom:1px solid var(--line2)"><select class="inline-sel" data-chg="fsube">${opt('','Tüm şubeler',fs)}${S.subeler.map(s=>opt(s.id,s.ad+' · '+s.alan,fs)).join('')}</select><input style="max-width:260px" placeholder="İsim ya da numara ara" data-filter="#ogr-t tr.click"></div>
   <div class="tw"><table id="ogr-t"><tr><th>No</th><th>Öğrenci</th><th>Şube</th><th>Hedef</th><th class="num">Devamsızlık (14 gün)</th><th class="num">Son net</th><th>Rehberlik</th></tr>
   ${list.map(o=>{const dv=devamsizlik(o.id);const ss=ogrSinavlar(o.id);const l=ss[ss.length-1];return `<tr class="click" data-act="go" data-page="ogrenciler:${o.id}"><td class="muted">${esc(o.no||'')}</td><td>${av('ogrenci:'+o.id,o.ad,26)} <b>${esc(o.ad)}</b>${O.role==='yonetici'&&S.burslar[o.id]?' <span class="tag acc">Burslu</span>':''}</td><td>${sube(o.subeId).ad}</td><td class="muted">${esc(o.hedef)}</td><td class="num">${dv.yok}</td><td class="num">${l?nf(toplamNet(sonucOf(l.id,o.id),l)):'—'}</td><td>${sevTag(risk(o.id).seviye)}</td></tr>`}).join('')}</table></div></div>`;
@@ -676,7 +691,7 @@ function ogrDetay(id){
     ars?(rol==='yonetici'?`<button class="btn" data-act="yerlesme" data-id="${id}">Yerleştiği yer</button><button class="btn primary" data-act="arsivden-al" data-id="${id}">Arşivden geri al</button>`:''):
     `<button class="btn" data-act="go" data-page="ortakkarne:${id}">Ortak karne</button>`+(['yonetici','rehber'].includes(rol)&&S.subeler.length>1?`<button class="btn" data-act="sinif-degis" data-id="${id}">Sınıf değiştir</button>`:'')+
     sevTag(rk.seviye)+(rol==='rehber'?` <button class="btn" data-act="seviye" data-id="${id}">Seviyeyi değiştir</button> <button class="btn" data-act="rd-yeni" data-id="${id}">Görüşme talebi</button> <button class="btn primary" data-act="gor-yeni" data-id="${id}">Görüşme ekle</button>`:'')+(rol==='yonetici'?` <button class="btn" data-act="ogr-duzenle" data-id="${id}">Düzenle</button> <button class="btn" data-act="arsive-al" data-id="${id}">Arşive al / mezun et</button> <button class="btn danger" data-act="ogr-sil" data-id="${id}">Kaydı sil</button>`:''));
-  h+=`<div class="grid3"><div class="card"><h3>Öğrenci ve veli</h3><p class="small">${o.no?'No: <b>'+esc(o.no)+'</b> · ':''}Kayıt: ${fd(o.kayit)}</p>${(o.subeGecmis||[]).length?`<p class="small muted">Şube geçmişi: ${o.subeGecmis.map(x=>`${esc(sube(x.eski).ad)} → ${esc(sube(x.yeni).ad)} (${fds(x.tarih)}${x.neden?', '+esc(x.neden):''})`).join(' · ')}</p>`:''}<p>${esc(v.ad)}${v.tel&&rol!=='ogretmen'?`<br><span class="small muted">${esc(v.tel)}</span>`:''}</p></div>
+  h+=`<div class="grid3">${ogrBilgiKart(o,rol)}
   <div class="card"><h3>Devam · son 14 gün</h3><p><b>${dv.yok}</b> gelmedi · <b>${dv.gec}</b> geç · ${dv.top} ders</p></div>
   <div class="card"><h3>Rehberlik sinyalleri</h3>${rk.sig.length?`<ul style="margin:0;padding-left:18px">${rk.sig.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:empty('Sinyal yok.')}${rk.manuel?`<p class="small muted" style="margin-top:6px">Seviyeyi rehber belirledi${rk.not?': '+esc(rk.not):''}</p>`:''}</div></div>`;
   const hd=hedefDurum(id);
@@ -686,9 +701,7 @@ function ogrDetay(id){
     <div class="card"><h2>Görüşmeler</h2>${gr.length?gr.map(g=>gorKart(g,true)).join(''):empty('Henüz görüşme yok.')}</div></div>`;
     const rl=S.randevular.filter(r=>r.ogrId===id).sort((a,b)=>a.tarih<b.tarih?1:-1);if(rl.length)h+=`<div class="card flush"><h2>Görüşme talepleri</h2><div class="tw"><table>${rl.map(r=>randevuKart(r,true)).join('')}</table></div></div>`;
   }else if(rol==='yonetici'){
-    const tk=S.taksitler.filter(t=>t.ogrId===id);const bu=S.burslar[id];
-    h+=`<div class="grid2"><div class="card"><h2>Taksitler</h2>${bu?`<p class="note">Burs: <b>${esc(bu.tur)}</b> · ${bu.tutar?tl(bu.tutar)+' / taksit':'%'+bu.oran}${bu.not?' · '+esc(bu.not):''}</p>`:''}<table>${tk.map(t=>`<tr><td>${fd(t.vade)}</td><td class="num">${t.liste&&t.liste!==t.tutar?`<s class="muted small">${tl(t.liste)}</s> `:''}${tl(t.tutar)}</td><td>${t.odendi?`<span class="tag ok">Ödendi · ${t.sekil==='kart'?'Kart':'Nakit'}</span>`:t.vade<TODAY?'<span class="tag bad">Gecikti</span>':'<span class="tag n">Bekliyor</span>'}</td></tr>`).join('')||`<tr><td>${empty(bu&&+bu.oran===100?'Tam burslu':'Taksit yok')}</td></tr>`}</table></div>
-    <div class="card"><h2>Rehberlik özetleri</h2><p class="small muted">Sadece rehberin paylaşılabilir olarak işaretlediği özetler görünür.</p>${gr.filter(g=>g.ozet).map(g=>`<p><b>${fds(g.tarih)}</b> · ${esc(g.konu)}: ${esc(g.ozet)}</p>`).join('')||empty('Paylaşılan özet yok.')}</div></div>`;
+    h+=ucretKart(id)+`<div class="grid2"><div class="card"><h2>Rehberlik özetleri</h2><p class="small muted">Sadece rehberin paylaşılabilir olarak işaretlediği özetler görünür.</p>${gr.filter(g=>g.ozet).map(g=>`<p><b>${fds(g.tarih)}</b> · ${esc(g.konu)}: ${esc(g.ozet)}</p>`).join('')||empty('Paylaşılan özet yok.')}</div></div>`;
   }
   return h;
 }
@@ -908,9 +921,9 @@ PAGES.vana=()=>{
   <div class="card" style="margin-top:16px"><h2>Bildirimler</h2>${bl.length?`<ul class="list">${bl.map(b=>`<li><span class="small muted">${ftime(b.zaman)}</span><br>${esc(b.metin)}</li>`).join('')}</ul>`:empty('Yeni bildirim yok. Yoklama ve sınav sonuçları burada görünür.')}</div>`;
 };
 PAGES.odemeler=()=>{
-  const id=cocuk();const tk=S.taksitler.filter(t=>t.ogrId===id).sort((a,b)=>a.vade<b.vade?-1:1);const kalan=tk.filter(t=>!t.odendi).reduce((a,t)=>a+t.tutar,0);
-  return cocukSec()+head('Ödemeler',esc(ogr(id).ad))+`<div class="stats">${stat('Toplam',tl(tk.reduce((a,t)=>a+t.tutar,0)))}${stat('Ödenen',tl(tk.filter(t=>t.odendi).reduce((a,t)=>a+t.tutar,0)))}${stat('Kalan',tl(kalan))}</div>
-  <div class="card flush"><table><tr><th>Vade</th><th class="num">Tutar</th><th>Durum</th></tr>${tk.map(t=>`<tr><td>${fd(t.vade)}</td><td class="num">${t.liste&&t.liste!==t.tutar?`<s class="muted small">${tl(t.liste)}</s> `:''}${tl(t.tutar)}</td><td>${t.odendi?`<span class="tag ok">Ödendi · ${fds(t.odendi)}</span>`:t.vade<TODAY?'<span class="tag bad">Gecikti</span>':'<span class="tag n">Bekliyor</span>'}</td></tr>`).join('')}</table></div><p class="note">Ödemeler kurumda nakit ya da kartla alınır ve kurum tarafından işaretlenir.</p>`;
+  const id=cocuk();const x=ucret(id);const tk=x.tk;let n=0;
+  return cocukSec()+head('Ödemeler',esc(ogr(id).ad))+`<div class="stats">${stat('Toplam fiyat',tl(x.toplam))}${x.indirim?stat('İndirim',tl(x.indirim),esc(x.indirimAd)):''}${stat('Ödenen',tl(x.odenen))}${stat('Kalan',tl(x.kalan))}</div>
+  <div class="card flush"><table><tr><th>Taksit</th><th>Vade</th><th class="num">Tutar</th><th>Durum</th></tr>${tk.map(t=>`<tr><td>${t.pesinat?'Peşinat':(++n)+'. taksit'}</td><td>${fd(t.vade)}</td><td class="num">${tl(t.tutar)}</td><td>${t.odendi?`<span class="tag ok">Ödendi · ${fds(t.odendi)}</span>`:t.vade<TODAY?'<span class="tag bad">Gecikti</span>':'<span class="tag n">Bekliyor</span>'}</td></tr>`).join('')||`<tr><td colspan="4">${empty('Ödeme planı yok.')}</td></tr>`}</table></div><p class="note">Ödemeler kurumda nakit ya da kartla alınır ve kurum tarafından işaretlenir.</p>`;
 };
 
 /* Tahsilat */
@@ -920,11 +933,11 @@ PAGES.tahsilat=()=>{
   const ay=TODAY.slice(0,7);const ayTah=S.taksitler.filter(t=>t.odendi&&t.odendi.slice(0,7)===ay).reduce((a,t)=>a+t.tutar,0);
   let list=S.taksitler;if(f==='geciken')list=ger;if(f==='buay')list=S.taksitler.filter(t=>t.vade.slice(0,7)===ay);
   list=[...list].sort((a,b)=>a.vade<b.vade?-1:1);
-  return head('Tahsilat','',`<button class="btn" data-act="tah-excel">Excel</button><button class="btn primary" data-act="plan-yeni">Taksit planı oluştur</button>`)+
+  return head('Tahsilat','',`<button class="btn" data-act="tah-excel">Excel</button><button class="btn primary" data-act="plan-yeni">Ücret ve taksit planı</button>`)+
   `<div class="stats">${stat('Tahsilat oranı','%'+(vad.length?Math.round((vad.length-ger.length)/vad.length*100):100),'vadesi gelenler içinde')}${stat('Geciken',tl(ger.reduce((a,t)=>a+t.tutar,0)),ger.length+' taksit')}${stat('Bu ay tahsil edilen',tl(ayTah))}</div>
   <div class="card"><div class="between"><h2 style="margin:0">Gün sonu · ${gun===TODAY?'Bugün':fd(gun)}</h2><input type="date" value="${gun}" max="${TODAY}" data-chg="fgun" style="width:auto"></div><div class="row" style="gap:28px;margin-top:10px"><div><div class="small muted">Nakit</div><div class="big" style="font-size:26px">${tl(nk)}</div></div><div><div class="small muted">Kart</div><div class="big" style="font-size:26px">${tl(kr)}</div></div><div><div class="small muted">Toplam · ${gt.length} ödeme</div><div class="big" style="font-size:26px">${tl(nk+kr)}</div></div></div><p class="small muted" style="margin:8px 0 0">Kasa sayımında nakit, POS gün sonu raporunda kart tutarını karşılaştır.</p></div>
   <div class="card flush"><div class="row" style="padding:14px 16px;border-bottom:1px solid var(--line2)"><div class="seg">${[['geciken','Geciken'],['buay','Bu ay'],['hepsi','Tümü'],['burs','Burslular']].map(([k,l])=>`<button class="${f===k?'on':''}" data-act="ftah" data-v="${k}">${l}</button>`).join('')}</div><input style="max-width:240px" placeholder="İsim ara" data-filter="#tah-t tr[data-r]"></div>
-  <div class="tw"><table id="tah-t"><tr><th>Öğrenci</th><th>Şube</th><th>Vade</th><th class="num">Tutar</th><th>Durum</th><th></th></tr>${list.map(t=>`<tr data-r><td><b>${esc(ogr(t.ogrId).ad)}</b></td><td>${sube(ogr(t.ogrId).subeId).ad}</td><td>${fd(t.vade)}</td><td class="num">${t.liste&&t.liste!==t.tutar?`<s class="muted small">${tl(t.liste)}</s> `:''}${tl(t.tutar)}</td><td>${t.odendi?`<span class="tag ok">Ödendi · ${t.sekil==='kart'?'Kart':'Nakit'} · ${fds(t.odendi)}</span>`:t.vade<TODAY?`<span class="tag bad">${daysBetween(t.vade,TODAY)} gün gecikti</span>`:'<span class="tag n">Bekliyor</span>'}</td><td class="num">${t.odendi?`<button class="btn sm" data-act="odendi" data-id="${t.id}">Düzenle</button>`:`<div class="row" style="justify-content:flex-end;flex-wrap:nowrap"><button class="btn sm" data-act="odendi" data-id="${t.id}" data-v="nakit">Nakit</button><button class="btn sm" data-act="odendi" data-id="${t.id}" data-v="kart">Kart</button></div>`}</td></tr>`).join('')||`<tr><td colspan="6">${empty('Kayıt yok.')}</td></tr>`}</table></div></div>`;
+  <div class="tw"><table id="tah-t"><tr><th>Öğrenci</th><th>Şube</th><th>Vade</th><th class="num">Tutar</th><th>Durum</th><th></th></tr>${list.map(t=>`<tr data-r><td><a href="#" data-act="go" data-page="ogrenciler:${t.ogrId}"><b>${esc(ogr(t.ogrId).ad)}</b></a>${t.pesinat?' <span class="small muted">peşinat</span>':''}${!t.odendi&&t.vade<TODAY?' '+araMini(telOf('veli:'+ogr(t.ogrId).veliId)):''}</td><td>${sube(ogr(t.ogrId).subeId).ad}</td><td>${fd(t.vade)}</td><td class="num">${t.liste&&t.liste!==t.tutar?`<s class="muted small">${tl(t.liste)}</s> `:''}${tl(t.tutar)}</td><td>${t.odendi?`<span class="tag ok">Ödendi · ${t.sekil==='kart'?'Kart':'Nakit'} · ${fds(t.odendi)}</span>`:t.vade<TODAY?`<span class="tag bad">${daysBetween(t.vade,TODAY)} gün gecikti</span>`:'<span class="tag n">Bekliyor</span>'}</td><td class="num">${t.odendi?`<button class="btn sm" data-act="odendi" data-id="${t.id}">Düzenle</button>`:`<div class="row" style="justify-content:flex-end;flex-wrap:nowrap"><button class="btn sm" data-act="odendi" data-id="${t.id}" data-v="nakit">Nakit</button><button class="btn sm" data-act="odendi" data-id="${t.id}" data-v="kart">Kart</button></div>`}</td></tr>`).join('')||`<tr><td colspan="6">${empty('Kayıt yok.')}</td></tr>`}</table></div></div>`;
 };
 
 /* Duyurular */
@@ -934,8 +947,8 @@ function kisiler(){
   const subOgt=subs=>S.ogretmenler.filter(t=>t.rehber||S.dersler.some(d=>d.ogretmenId===t.id&&subs.includes(d.subeId)));
   if(r==='veli'){subOgt(veli(O.id).cocuklar.map(c=>ogr(c).subeId)).forEach(t=>L.push(k(t)));L.push(yonetimKeys()[0])}
   if(r==='ogrenci'){subOgt([ogr(O.id).subeId]).forEach(t=>L.push(k(t)))}
-  if(r==='ogretmen'){const subs=[...new Set(S.dersler.filter(d=>d.ogretmenId===O.id).map(d=>d.subeId))];S.ogrenciler.filter(o=>subs.includes(o.subeId)).forEach(o=>{L.push('veli:'+o.veliId);L.push('ogrenci:'+o.id)});S.ogretmenler.filter(t=>t.id!==O.id).forEach(t=>L.push(k(t)));yonetimKeys().forEach(x=>L.push(x))}
-  if(r==='rehber'){S.ogrenciler.forEach(o=>{L.push('ogrenci:'+o.id);L.push('veli:'+o.veliId)});S.ogretmenler.filter(t=>t.id!==O.id).forEach(t=>L.push(k(t)));yonetimKeys().forEach(x=>L.push(x))}
+  if(r==='ogretmen'){const subs=[...new Set(S.dersler.filter(d=>d.ogretmenId===O.id).map(d=>d.subeId))];S.ogrenciler.filter(o=>subs.includes(o.subeId)).forEach(o=>{veliKeys(o).forEach(x=>L.push(x));L.push('ogrenci:'+o.id)});S.ogretmenler.filter(t=>t.id!==O.id).forEach(t=>L.push(k(t)));yonetimKeys().forEach(x=>L.push(x))}
+  if(r==='rehber'){S.ogrenciler.forEach(o=>{L.push('ogrenci:'+o.id);veliKeys(o).forEach(x=>L.push(x))});S.ogretmenler.filter(t=>t.id!==O.id).forEach(t=>L.push(k(t)));yonetimKeys().forEach(x=>L.push(x))}
   if(r==='yonetici'){yonetimKeys().forEach(x=>L.push(x));S.ogretmenler.forEach(t=>L.push(k(t)));aktifVeliler().forEach(v=>L.push('veli:'+v.id))}
   S.mesajlar.forEach(m=>{if(benim(m.to))L.push(m.from);if(benim(m.from))L.push(m.to)});
   return [...new Set(L)].filter(x=>x&&!benim(x));
@@ -989,12 +1002,12 @@ function temaKart(){const t=temaOku();const sec=(n,l,v)=>`<div class="seg">${l.m
   <div class="field"><label>Sol menü</label>${sec('menu',[['acik','Açık'],['koyu','Renkli']],t.menu)}</div>
   <div class="row" style="align-items:flex-start;gap:16px">${temaOnizle(t)}<button class="btn" data-act="tema-sifirla">Varsayılana dön</button></div>
   <p class="small muted" style="margin-top:8px">Koyu mod ve yazı boyutu kişiseldir; herkes kendi “Hesabım” penceresinden seçer.</p></div>`}
-function tahsilatBurs(){const ids=Object.keys(S.burslar).filter(i=>S.ogrenciler.some(o=>o.id===i));const tk=S.taksitler.filter(t=>ids.includes(t.ogrId));const top=tk.reduce((a,t)=>a+((t.liste||t.tutar)-t.tutar),0);
+function tahsilatBurs(){const ids=Object.keys(S.burslar).filter(i=>S.ogrenciler.some(o=>o.id===i));const tk=S.taksitler.filter(t=>ids.includes(t.ogrId));const top=ids.reduce((a,i)=>a+ucret(i).indirim,0);
   const ort=id=>{const ss=ogrSinavlar(id);const l=ss[ss.length-1];return l?toplamNet(sonucOf(l.id,id),l):null};
   const kur=S.ogrenciler.filter(o=>!ids.includes(o.id)).map(o=>ort(o.id)).filter(x=>x!=null);const bur=ids.map(ort).filter(x=>x!=null);const av_=l=>l.length?nf(l.reduce((a,b)=>a+b,0)/l.length):'—';
   return head('Tahsilat','',`<button class="btn" data-act="tah-excel">Excel</button>`)+`<div class="stats">${stat('Burslu öğrenci',ids.length,`${S.ogrenciler.length} öğrencinin %${S.ogrenciler.length?Math.round(ids.length/S.ogrenciler.length*100):0}’i`)}${stat('Toplam burs / indirim',tl(top),'taksit planlarındaki')}${stat('Burslu son deneme ort.',av_(bur),'diğerleri: '+av_(kur))}</div>
   <div class="card flush"><div class="row" style="padding:14px 16px;border-bottom:1px solid var(--line2)"><div class="seg">${[['geciken','Geciken'],['buay','Bu ay'],['hepsi','Tümü'],['burs','Burslular']].map(([k,l])=>`<button class="${k==='burs'?'on':''}" data-act="ftah" data-v="${k}">${l}</button>`).join('')}</div></div>
-  <div class="tw"><table><tr><th>Öğrenci</th><th>Şube</th><th>Burs</th><th class="num">Oran / tutar</th><th class="num">Toplam indirim</th><th class="num">Son net</th></tr>${ids.map(i=>{const o=ogr(i),b=S.burslar[i];const ind=S.taksitler.filter(t=>t.ogrId===i).reduce((a,t)=>a+((t.liste||t.tutar)-t.tutar),0);const n=ort(i);
+  <div class="tw"><table><tr><th>Öğrenci</th><th>Şube</th><th>Burs</th><th class="num">Oran / tutar</th><th class="num">Toplam indirim</th><th class="num">Son net</th></tr>${ids.map(i=>{const o=ogr(i),b=S.burslar[i];const ind=ucret(i).indirim;const n=ort(i);
     return `<tr class="click" data-act="go" data-page="ogrenciler:${i}"><td><b>${esc(o.ad)}</b></td><td>${esc(sube(o.subeId).ad)}</td><td>${esc(b.tur)}${b.not?` <span class="small muted">${esc(b.not)}</span>`:''}</td><td class="num">${b.tutar?tl(b.tutar):'%'+b.oran}</td><td class="num">${tl(ind)}</td><td class="num">${n==null?'—':nf(n)}</td></tr>`}).join('')||`<tr><td colspan="6">${empty('Burslu öğrenci yok. Öğrenci kaydında ya da “Düzenle”de burs girilir.')}</td></tr>`}</table></div></div><p class="small muted">Burs bilgisini sadece yöneticiler görür.</p>`}
 
 PAGES.ayarlar=()=>head('Ayarlar')+`<div class="grid2"><div class="card"><form data-form="ayarlar"><h2>Kurum</h2>${field('Kurum adı',`<input name="kurum" value="${esc(S.ayarlar.kurum)}">`,'Giriş ekranında, üst menüde, karnelerde ve tarayıcı sekmesinde görünür')}
@@ -1175,30 +1188,44 @@ function karneHtml(id,s){const o=ogr(id),r=sonucOf(s.id,id);if(!r)return '';cons
 
 /* ---------- toplu öğrenci aktarma ---------- */
 let OAKT=null;
-function oaktOto(){const m={no:-1,ad:-1,soyad:-1,sube:-1,veli:-1,tel:-1,hedef:-1};
+const RX2={tc:/(^tc\b|kimlik)/,dogum:/dogum/,okul:/^(okul|okulu|okul adi|okudugu okul|mezun oldugu okul|devam ettigi okul)$/,sinif:/^(sinif seviyesi|seviye|seviyesi|sinif duzeyi|duzey)$/,adres:/adres/,
+  veli2:/^(veli 2|2 veli|ikinci veli)( ad soyad| adi soyadi| ad| adi)?$/,tel2:/^(veli 2|2 veli|ikinci veli)\b.*(tel|telefon|gsm|cep)/};
+function oaktOto(){const m={no:-1,ad:-1,soyad:-1,sube:-1,veli:-1,tel:-1,hedef:-1,tc:-1,dogum:-1,okul:-1,sinif:-1,adres:-1,veli2:-1,tel2:-1};
   OAKT.labels.forEach((L,c)=>{const n=norm(L);if(!n)return;
+    if(m.tel2<0&&RX2.tel2.test(n))return m.tel2=c;if(m.veli2<0&&RX2.veli2.test(n))return m.veli2=c;
+    if(m.tc<0&&RX2.tc.test(n))return m.tc=c;if(m.dogum<0&&RX2.dogum.test(n))return m.dogum=c;if(m.okul<0&&RX2.okul.test(n))return m.okul=c;if(m.sinif<0&&RX2.sinif.test(n))return m.sinif=c;if(m.adres<0&&RX2.adres.test(n))return m.adres=c;
     if(m.no<0&&RX.no.test(n))return m.no=c;if(m.veli<0&&RX.veli.test(n))return m.veli=c;if(m.tel<0&&RX.tel.test(n))return m.tel=c;if(m.sube<0&&RX.sube.test(n))return m.sube=c;
     if(m.hedef<0&&RX.hedef.test(n))return m.hedef=c;if(m.soyad<0&&RX.soyad.test(n))return m.soyad=c;if(m.ad<0&&RX.ad.test(n))return m.ad=c});
   OAKT.map=m}
 function subeBul(ad){const n=norm(ad);return S.subeler.find(s=>norm(s.ad)===n)}
-function oaktHesap(){const m=OAKT.map;const h=(r,c)=>c>=0?String(r[c]==null?'':r[c]).trim():'';const yeni=[],atla=[],yeniSube=new Set();const gorulen=new Set();
+function tarihOku(v){if(v==null||v==='')return '';const ok=(y,m,d)=>y>1900&&y<2100&&m>=1&&m<=12&&d>=1&&d<=31?`${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`:'';
+  if(typeof v==='number'&&v>1000&&v<80000){const d=new Date(Math.round((v-25569)*86400000));return ok(d.getUTCFullYear(),d.getUTCMonth()+1,d.getUTCDate())}
+  if(v instanceof Date&&!isNaN(v))return ok(v.getFullYear(),v.getMonth()+1,v.getDate());const s=String(v).trim();
+  let m=s.match(/^(\d{4})[-./](\d{1,2})[-./](\d{1,2})/);if(m)return ok(+m[1],+m[2],+m[3]);m=s.match(/^(\d{1,2})[-./](\d{1,2})[-./](\d{4})/);if(m)return ok(+m[3],+m[2],+m[1]);
+  if(/^\d{4,5}(\.0)?$/.test(s))return tarihOku(+s);return ''}
+function sinifOku(v,sb){const s=norm(v);if(s.includes('mezun'))return 'Mezun';let m=s.match(/\d{1,2}/);if(m&&SINIFLAR.includes(String(+m[0])))return String(+m[0]);m=String(sb||'').match(/^\s*(\d{1,2})(?!\d)/);if(m&&SINIFLAR.includes(String(+m[1])))return String(+m[1]);return ''}
+function oaktHesap(){const m=OAKT.map;const h=(r,c)=>c>=0?String(r[c]==null?'':r[c]).trim():'';const ham=(r,c)=>c>=0?r[c]:'';const yeni=[],atla=[],uyari=[],yeniSube=new Set();const gorulen=new Set(),gTc=new Set();
   OAKT.rows.slice(OAKT.start).forEach(r=>{let ad=h(r,m.ad);if(m.soyad>=0)ad=(ad+' '+h(r,m.soyad)).trim();ad=ad.replace(/\s+/g,' ');if(!ad)return;
     const no=h(r,m.no).replace(/\.0$/,'');const sb=h(r,m.sube)||OAKT.varsayilanSube||'';if(no&&noSahibi(no)&&!S.ogrenciler.some(o=>String(o.no)===no)){atla.push(ad+` (${no} numarası arşivdeki bir öğrencide)`);return}const anahtar=no||adAnahtar(ad)+'|'+norm(sb);
-    if(gorulen.has(anahtar)){atla.push(ad+' (dosyada iki kez)');return}gorulen.add(anahtar);
+    if(gorulen.has(anahtar)){atla.push(ad+' (dosyada iki kez)');return}
     if((no&&S.ogrenciler.some(o=>o.no&&String(o.no)===no))||S.ogrenciler.some(o=>adAnahtar(o.ad)===adAnahtar(ad)&&(!sb||norm(sube(o.subeId).ad)===norm(sb)))){atla.push(ad+' (zaten kayıtlı)');return}
     if(!sb){atla.push(ad+' (şube yok)');return}
-    if(!subeBul(sb))yeniSube.add(sb);
-    yeni.push({ad,no,sb,veli:h(r,m.veli),tel:h(r,m.tel),hedef:h(r,m.hedef)})});
-  return {yeni,atla,yeniSube:[...yeniSube]}}
+    let tc=h(r,m.tc).replace(/\.0$/,'').replace(/\s/g,'');if(tc&&!tcGecerli(tc)){uyari.push(ad+' (TC geçersiz, boş bırakıldı)');tc=''}
+    if(tc&&(tcSahibi(tc,'')||gTc.has(tc))){atla.push(ad+' (bu TC kimlik no zaten kayıtlı)');return}
+    const dRaw=ham(r,m.dogum);const dogum=tarihOku(dRaw);if(dRaw!==''&&dRaw!=null&&!dogum)uyari.push(ad+' (doğum tarihi okunamadı)');
+    gorulen.add(anahtar);if(tc)gTc.add(tc);if(!subeBul(sb))yeniSube.add(sb);
+    yeni.push({ad,no,sb,veli:h(r,m.veli),tel:h(r,m.tel),hedef:h(r,m.hedef),tc,dogum,okul:h(r,m.okul),sinif:sinifOku(h(r,m.sinif),sb),adres:h(r,m.adres),veli2:h(r,m.veli2),tel2:h(r,m.tel2)})});
+  return {yeni,atla,uyari,yeniSube:[...yeniSube]}}
 function oaktRender(){const L=OAKT.labels,m=OAKT.map;const sel=k=>`<select class="inline-sel" data-chg="oakt" data-k="${k}" style="max-width:240px">${opt(-1,'—',m[k])}${L.map((l,i)=>opt(i,`${kolonHarf(i)} · ${l||'(boş)'}`,m[k])).join('')}</select>`;
-  const {yeni,atla,yeniSube}=oaktHesap();
+  const {yeni,atla,uyari,yeniSube}=oaktHesap();const tr=(l,k)=>`<tr><td>${l}</td><td>${sel(k)}</td></tr>`;
   let h=`<p class="small muted">Dosya: <b>${esc(OAKT.dosya)}</b> · ${OAKT.rows.length-OAKT.start} satır</p><div class="tw"><table><tr><th>Bilgi</th><th>Sütun</th></tr>
-  <tr><td>Ad soyad (ya da ad) *</td><td>${sel('ad')}</td></tr><tr><td>Soyad (ayrı sütunsa)</td><td>${sel('soyad')}</td></tr><tr><td>Öğrenci numarası</td><td>${sel('no')}</td></tr><tr><td>Şube / sınıf</td><td>${sel('sube')} ${m.sube<0?`<select class="inline-sel" data-chg="oakt-vsube">${opt('','Hepsi bu şubeye…',OAKT.varsayilanSube||'')}${S.subeler.map(s=>opt(s.ad,s.ad,OAKT.varsayilanSube||'')).join('')}</select>`:''}</td></tr>
-  <tr><td>Veli ad soyad</td><td>${sel('veli')}</td></tr><tr><td>Veli telefonu</td><td>${sel('tel')}</td></tr><tr><td>Hedef</td><td>${sel('hedef')}</td></tr></table></div>
+  ${tr('Ad soyad (ya da ad) *','ad')}${tr('Soyad (ayrı sütunsa)','soyad')}${tr('Öğrenci numarası','no')}<tr><td>Şube</td><td>${sel('sube')} ${m.sube<0?`<select class="inline-sel" data-chg="oakt-vsube">${opt('','Hepsi bu şubeye…',OAKT.varsayilanSube||'')}${S.subeler.map(s=>opt(s.ad,s.ad,OAKT.varsayilanSube||'')).join('')}</select>`:''}</td></tr>
+  ${tr('Sınıf seviyesi','sinif')}${tr('Okul','okul')}${tr('TC kimlik no','tc')}${tr('Doğum tarihi','dogum')}${tr('Adres','adres')}${tr('Veli ad soyad','veli')}${tr('Veli telefonu','tel')}${tr('İkinci veli','veli2')}${tr('İkinci veli telefonu','tel2')}${tr('Hedef','hedef')}</table></div>
   <label class="chk" style="margin-top:10px"><input type="checkbox" data-chg="oakt-otono" ${OAKT.otoNo!==false?'checked':''}> Numarası olmayanlara otomatik numara ver (${esc(siradakiNo())}’den başlayarak)</label>
   <div class="stats" style="margin-top:14px">${stat('Eklenecek',yeni.length)}${stat('Atlanacak',atla.length)}${stat('Yeni şube',yeniSube.length,yeniSube.join(', '))}</div>
   ${atla.length?`<details style="margin-bottom:10px"><summary class="small">Atlananları göster</summary><p class="small muted">${atla.slice(0,50).map(esc).join(', ')}</p></details>`:''}
-  ${yeni.length?`<div class="tw"><table><tr><th>Ad soyad</th><th>No</th><th>Şube</th><th>Veli</th><th>Telefon</th></tr>${yeni.slice(0,6).map(x=>`<tr><td>${esc(x.ad)}</td><td>${esc(x.no)}</td><td>${esc(x.sb)}</td><td>${esc(x.veli||'—')}</td><td>${esc(x.tel)}</td></tr>`).join('')}</table></div>`:''}
+  ${uyari.length?`<details style="margin-bottom:10px"><summary class="small" style="color:var(--bad)">${uyari.length} uyarı</summary><p class="small muted">${uyari.slice(0,50).map(esc).join(', ')}</p></details>`:''}
+  ${yeni.length?`<div class="tw"><table><tr><th>Ad soyad</th><th>No</th><th>Şube</th><th>Sınıf · okul</th><th>Veli</th><th>Telefon</th></tr>${yeni.slice(0,6).map(x=>`<tr><td>${esc(x.ad)}</td><td>${esc(x.no)}</td><td>${esc(x.sb)}</td><td class="small">${esc([sinifAd(x.sinif),x.okul].filter(Boolean).join(' · '))}</td><td>${esc(x.veli||'—')}${x.veli2?'<br><span class="small muted">'+esc(x.veli2)+'</span>':''}</td><td>${esc(x.tel)}</td></tr>`).join('')}</table></div>`:''}
   <div class="row" style="margin-top:14px"><button class="btn primary" data-act="oakt-onay" ${yeni.length?'':'disabled'}>${yeni.length} öğrenciyi ekle</button><span class="small muted">Veli adı yoksa “Öğrenci adı · Velisi” olarak açılır.</span></div>`;
   $('#modal-box').innerHTML=`<div class="between"><h2 style="margin:0">Excel'den öğrenci aktar</h2><button class="btn sm" data-act="close">Kapat</button></div>${h}`}
 
@@ -1266,7 +1293,7 @@ function hedefSecici(kisiVar=true){
   </div>`}
 const cbRaw=n=>`<input type="checkbox" name="${esc(n)}">`;
 function hedefCoz(f){const K=new Set(),ad=[];const ogrs=S.ogrenciler,ogts=S.ogretmenler;
-  const addO=l=>l.forEach(o=>K.add('ogrenci:'+o.id));const addV=l=>l.forEach(o=>{if(o.veliId)K.add('veli:'+o.veliId)});const addT=l=>l.forEach(t=>{const k=ogtKey(t);if(k)K.add(k)});
+  const addO=l=>l.forEach(o=>K.add('ogrenci:'+o.id));const addV=l=>l.forEach(o=>veliKeys(o).forEach(k=>K.add(k)));const addT=l=>l.forEach(t=>{const k=ogtKey(t);if(k)K.add(k)});
   if(f.h_hepsi){addO(ogrs);addV(ogrs);addT(ogts);yonetimKeys().forEach(k=>K.add(k));ad.push('Herkes')}
   if(f.h_r_ogretmen){addT(ogts.filter(t=>!t.rehber));ad.push('Öğretmenler')}
   if(f.h_r_rehber){addT(ogts.filter(t=>t.rehber));ad.push('Rehberlik')}
@@ -1292,7 +1319,7 @@ function otoGruplar(){let ch=false;const yon=yonetimKeys();const reh=S.ogretmenl
   zumreler().forEach(z=>istenen.push({oto:'zumre:'+z,ad:z+' zümresi',uyeler:[...S.ogretmenler.filter(t=>!t.rehber&&t.brans===z).map(ogtKey),...yon],yoneticiler:yon,sadeceYonetici:false}));
   S.subeler.forEach(s=>{const ogs=S.ogrenciler.filter(o=>o.subeId===s.id);const ogts=[...new Set(S.dersler.filter(d=>d.subeId===s.id).map(d=>d.ogretmenId))].map(id=>S.ogretmenler.find(t=>t.id===id)).filter(Boolean).map(ogtKey);
     istenen.push({oto:'sube:'+s.id,ad:s.ad+' sınıfı',uyeler:[...ogs.map(o=>'ogrenci:'+o.id),...ogts,...reh,...yon],yoneticiler:[...ogts,...reh,...yon],sadeceYonetici:false});
-    istenen.push({oto:'veli:'+s.id,ad:s.ad+' velileri',uyeler:[...ogs.map(o=>'veli:'+o.veliId),...ogts,...reh,...yon],yoneticiler:[...ogts,...reh,...yon],sadeceYonetici:true})});
+    istenen.push({oto:'veli:'+s.id,ad:s.ad+' velileri',uyeler:[...ogs.flatMap(veliKeys),...ogts,...reh,...yon],yoneticiler:[...ogts,...reh,...yon],sadeceYonetici:true})});
   if(S.ogretmenler.length)istenen.push({oto:'ogretmenler',ad:'Öğretmenler odası',uyeler:[...S.ogretmenler.map(ogtKey),...yon],yoneticiler:yon,sadeceYonetici:false});
   istenen.forEach(x=>{const g=S.gruplar.find(y=>y.oto===x.oto);const uy=[...new Set(x.uyeler.filter(Boolean))].sort();
     if(!g){if(x.oto.startsWith('sube:')&&!uy.some(k=>k.startsWith('ogrenci:')))return;if(x.oto.startsWith('veli:')&&!uy.some(k=>k.startsWith('veli:')))return;
@@ -1737,7 +1764,7 @@ const ACT={
     const kayit={};document.querySelectorAll('#yk tr').forEach(tr=>kayit[tr.dataset.ogr]=tr.dataset.st);
     if(y)y.kayit=kayit;else S.yoklamalar.push({id:uid(),dersId:d.id,tarih,kayit});
     const kz=$('#yk-konu');if(kz&&kz.value&&!S.islenen.some(x=>x.mufredatId===kz.dataset.m&&x.konuId===kz.value&&x.subeId===ders.subeId))S.islenen.push({id:uid()+uid(),mufredatId:kz.dataset.m,konuId:kz.value,subeId:ders.subeId,tarih,ogretmenKey:ME()});
-    let n=0;if(S.ayarlar.veliDevamBildirim!==false)Object.entries(kayit).forEach(([oid,st])=>{if(st!=='var'&&eski[oid]!==st){const o=ogr(oid);S.bildirimler.push({id:uid(),veliId:o.veliId,ogrId:oid,zaman:tarih===TODAY?nowTime():tarih+'T'+ders.saat,metin:`${o.ad} ${fds(tarih)} ${ders.saat} ${ders.ders} dersine ${st==='yok'?'katılmadı':'geç kaldı'}.`});n++}});
+    let n=0;if(S.ayarlar.veliDevamBildirim!==false)Object.entries(kayit).forEach(([oid,st])=>{if(st!=='var'&&eski[oid]!==st){const o=ogr(oid);veliIdleri(o).forEach(vi=>S.bildirimler.push({id:uid()+uid(),veliId:vi,ogrId:oid,zaman:tarih===TODAY?nowTime():tarih+'T'+ders.saat,metin:`${o.ad} ${fds(tarih)} ${ders.saat} ${ders.ders} dersine ${st==='yok'?'katılmadı':'geç kaldı'}.`}));n++}});
     save();toast(`Yoklama kaydedildi${n?` · ${n} veliye bildirim`:''}`);go(O.from==='bugun'?'bugun':'yoklama')},
   'ders-yeni':()=>!S.ogretmenler.some(t=>!t.rehber)?toast('Önce öğretmen ekle (Şube ve öğretmen sayfası)'):modal('Ders ekle',`<form data-form="ders">${field('Şube',subeSel('subeId',O.f_sube||S.subeler[0].id))}<div class="fields">${field('Gün',`<select name="gun">${[1,2,3,4,5,6].map(g=>opt(g,GUN[g],1)).join('')}</select>`)}${field('Saat',`<input type="time" name="saat" value="09:00" required>`)}</div>${field('Ders',`<input name="ders" required placeholder="Örn. Matematik">`)}${field('Öğretmen',`<select name="ogretmenId">${S.ogretmenler.filter(t=>!t.rehber).map(t=>opt(t.id,t.ad+' · '+t.brans,'')).join('')}</select>`)}<button class="btn primary" type="submit">Ekle</button></form>`),
   'ask-yes':()=>{const f=PENDING;PENDING=null;closeModal();if(f)f()},
@@ -1748,7 +1775,7 @@ const ACT={
     <details class="field"><summary>Branş / özel deneme ayarları</summary><div style="margin-top:8px">${field('Dersler ve soru sayıları',`<input name="ozelDers" placeholder="Matematik:20, Geometri:10">`,'Sadece “Branş / özel deneme” türünde kullanılır. Ders:soru şeklinde, virgülle ayır.')}${field('Yanlış kuralı',`<select name="ozelF">${opt(4,'4 yanlış 1 doğruyu götürür',4)}${opt(3,'3 yanlış 1 doğruyu götürür',4)}${opt(0,'Yanlış doğruyu götürmez',4)}</select>`)}</div></details>
     <button class="btn primary" type="submit">Oluştur</button></form>`)},
   'den-sil':d=>{const s=S.sinavlar.find(x=>x.id===d.id);ask(`“${s.ad}” ve tüm sonuçları silinsin mi? Bu geri alınamaz.`,()=>{S.sinavlar=S.sinavlar.filter(x=>x.id!==d.id);S.sonuclar=S.sonuclar.filter(r=>r.sinavId!==d.id);save();toast('Deneme silindi');go('denemeler')})},
-  'den-yayin':d=>{const s=S.sinavlar.find(x=>x.id===d.id);s.yayinda=!s.yayinda;if(s.yayinda){S.sonuclar.filter(r=>r.sinavId===s.id).forEach(r=>{const o=ogr(r.ogrId);S.bildirimler.push({id:uid(),veliId:o.veliId,ogrId:o.id,zaman:nowTime(),metin:`${o.ad} için ${s.ad} sonucu yayınlandı: ${nf(toplamNet(r,s))} net.`})})}save();toast(s.yayinda?'Sonuçlar yayınlandı, velilere bildirim gitti':'Yayından kaldırıldı');render()},
+  'den-yayin':d=>{const s=S.sinavlar.find(x=>x.id===d.id);s.yayinda=!s.yayinda;if(s.yayinda){S.sonuclar.filter(r=>r.sinavId===s.id).forEach(r=>{const o=ogr(r.ogrId);veliIdleri(o).forEach(vi=>S.bildirimler.push({id:uid()+uid(),veliId:vi,ogrId:o.id,zaman:nowTime(),metin:`${o.ad} için ${s.ad} sonucu yayınlandı: ${nf(toplamNet(r,s))} net.`}))})}save();toast(s.yayinda?'Sonuçlar yayınlandı, velilere bildirim gitti':'Yayından kaldırıldı');render()},
   'odev-yeni':()=>{const subs=[...new Set(S.dersler.filter(x=>x.ogretmenId===O.id).map(x=>x.subeId))];modal('Yeni ödev',`<form data-form="odev">${field('Şube',`<select name="subeId">${subs.map(s=>opt(s,sube(s).ad,'')).join('')}</select>`)}${field('Başlık',`<input name="baslik" required>`)}${field('Açıklama',`<textarea name="aciklama"></textarea>`)}${field('Son tarih',`<input type="date" name="sonTarih" value="${addDays(TODAY,3)}" required>`)}<button class="btn primary" type="submit">Ver</button></form>`)},
   'odev-st':d=>{const h=S.odevler.find(x=>x.id===d.id);if(d.v==='bekliyor')delete h.teslim[d.ogr];else h.teslim[d.ogr]=d.v;save();render()},
   'odev-sil':d=>ask('Ödev silinsin mi?',()=>{S.odevler=S.odevler.filter(x=>x.id!==d.id);save();go('odevler')}),
@@ -1774,7 +1801,7 @@ const ACT={
     await excelIndir(s.ad+' sonuçları',[['Kurum sırası','Sınıf sırası','No','Ad Soyad','Şube',...t.dersler.flatMap(([x])=>[x+' D',x+' Y',x+' Net']),'Toplam Net','Tahmini puan'],...rr.map(({r,n})=>{const o=ogr(r.ogrId);const sr=siralar(s,r.ogrId);const pu=puanOf(Object.fromEntries(t.dersler.map(([x])=>[x,dersNet(r.c[x],t.f)])),s);return [r.sira||'',sr?sr.sinif:'',o.no||'',o.ad,sube(o.subeId).ad,...t.dersler.flatMap(([x])=>{const c=r.c[x]||{d:0,y:0};return [c.d,c.y,Math.round(dersNet(c,t.f)*100)/100]}),Math.round(n*100)/100,pu==null?'':Math.round(pu*100)/100]})])},
   karneler:d=>{const s=S.sinavlar.find(x=>x.id===d.id);modal('Karneleri yazdır',`<form data-form="karneler" data-id="${s.id}">${field('Şube',`<select name="sube">${opt('','Tüm şubeler','')}${s.subeler.map(x=>opt(x,sube(x).ad,'')).join('')}</select>`)}<p class="small muted">Her öğrenci ayrı sayfaya basılır. Yazdırma penceresinde “PDF olarak kaydet” seçersen PDF dosyası alırsın.</p><button class="btn primary" type="submit">Yazdır / PDF</button></form>`)},
   'karne-yazdir':d=>{const s=S.sinavlar.find(x=>x.id===d.id);yazdir(karneHtml(d.ogr,s))},
-  'ogr-aktar':()=>modal("Excel'den öğrenci aktar",`<p>Öğrenci listesini içeren <b>Excel</b> ya da <b>CSV</b> dosyasını seç. Sütunlar otomatik tanınır: ad soyad, numara, şube/sınıf, veli adı, veli telefonu, hedef.</p><div class="field"><input type="file" accept=".xlsx,.xls,.csv,.txt" data-chg="oakt-file"></div><p class="small muted"><a href="#" data-act="oakt-sablon">Boş öğrenci şablonu indir</a> · Aynı numaralı ya da aynı şubede aynı isimli öğrenci tekrar eklenmez; olmayan şubeler otomatik açılır.</p>`),
+  'ogr-aktar':()=>modal("Excel'den öğrenci aktar",`<p>Öğrenci listesini içeren <b>Excel</b> ya da <b>CSV</b> dosyasını seç. Sütunlar otomatik tanınır: ad soyad, numara, şube, sınıf seviyesi, okul, TC, doğum tarihi, adres, veli ve ikinci veli adı/telefonu, hedef.</p><div class="field"><input type="file" accept=".xlsx,.xls,.csv,.txt" data-chg="oakt-file"></div><p class="small muted"><a href="#" data-act="oakt-sablon">Boş öğrenci şablonu indir</a> · Aynı numaralı ya da aynı şubede aynı isimli öğrenci tekrar eklenmez; olmayan şubeler otomatik açılır.</p>`),
   'oakt-sablon':async()=>{await excelIndir('ogrenci-sablonu',[['No','Ad Soyad','Şube','Veli Ad Soyad','Veli Telefon','Hedef'],['1001','Örnek Öğrenci',S.subeler[0]?S.subeler[0].ad:'12-A','Örnek Veli','05xx xxx xx xx','Tıp']])},
   'oakt-onay':()=>{const {yeni}=oaktHesap();let n=0;
     yeni.forEach(x=>{let sb=subeBul(x.sb);if(!sb){sb={id:'s'+uid(),ad:x.sb,kademe:/^[5-8]/.test(x.sb.trim())?'LGS':'YKS',alan:''};S.subeler.push(sb)}
@@ -1820,7 +1847,7 @@ const FORM={
     if(son&&daysBetween(son.tarih,TODAY)<7)Object.assign(son,v,{tarih:TODAY});else S.checkinler.push({id:uid(),ogrId:O.id,tarih:TODAY,...v});save();toast('Teşekkürler, check-in kaydedildi');go('oana')},
   gorusme:(f,el)=>{const g={id:uid()+uid(),ogrId:f.ogrId,rehberId:O.id,tarih:f.tarih,tur:f.tur,konu:f.konu,gozlem:f.gozlem.trim(),karar:f.karar.trim(),takip:f.takip,ozet:f.ozet.trim(),veliNotu:f.veliNotu.trim(),veliNotuGonder:!!(f.veliNotuGonder&&f.veliNotu.trim())};if(!ONLINE)g.kayit=nowTime()+':00';
     const rid=el&&el.dataset&&el.dataset.randevu;if(rid){const r=S.randevular.find(x=>x.id===rid);if(r){r.durum='gerceklesti';r.gorusmeId=g.id;r.durumZaman=nowTime();g.randevuId=rid}}
-    S.gorusmeler.push(g);const o=ogr(f.ogrId);if(f.veliBildir&&o.veliId)bildir('veli:'+o.veliId,`${o.ad.split(' ')[0]} ile ${fds(f.tarih)} tarihinde rehberlik görüşmesi yapıldı.${g.veliNotuGonder?' Rehberin notu: '+g.veliNotu:''}`,{ogrId:o.id});
+    S.gorusmeler.push(g);const o=ogr(f.ogrId);if(f.veliBildir)bildirVeli(o,`${o.ad.split(' ')[0]} ile ${fds(f.tarih)} tarihinde rehberlik görüşmesi yapıldı.${g.veliNotuGonder?' Rehberin notu: '+g.veliNotu:''}`,{ogrId:o.id});
     save();closeModal();toast('Görüşme kaydedildi'+(f.veliBildir?' · veliye bildirim gitti':''));render()},
   seviye:(f,el)=>{const id=el.dataset.id;if(f.seviye)S.riskler[id]={seviye:f.seviye,not:f.not.trim(),tarih:TODAY};else delete S.riskler[id];save();closeModal();render()},
   profil:(f,el)=>{S.profiller[el.dataset.id]={...f};save();closeModal();render()},
@@ -1847,10 +1874,12 @@ const FORM={
 const CHG={
   imp:(v,el)=>{const k=el.dataset.k,n=+v;if(k.startsWith('ders|')){const [,d,tp]=k.split('|');IMP.map.ders[d][tp]=n}else IMP.map[k]=n;impRender()},
   'imp-file':async(v,el)=>{const fs=[...el.files];if(!fs.length)return;const s=S.sinavlar.find(x=>x.id===el.dataset.id);
-    const fmtF=fs.find(x=>/\.fmt$/i.test(x.name)),f=fs.find(x=>!/\.fmt$/i.test(x.name));let fmtT=null;
-    if(fmtF){fmtT=await metinOku(fmtF);const r=fmtParse(fmtT,s);if(!r.alanSayisi){toast(fmtF.name+': form tanımı okunamadı');return}
+    const tanimMi=t=>String(t).split(/\r?\n/).filter(l=>/^\s*\d{1,3}=\d{1,3}=\d{1,3}=\d{1,3}=[A-Z]=[DY]=/.test(l)).length>=3;
+    let fmtF=fs.find(x=>/\.fmt$/i.test(x.name)),f=null,fmtT=null;
+    for(const x of fs){if(x===fmtF)continue;if(/\.(txt|dat)$/i.test(x.name)&&x.size<200000){const t=await metinOku(x);if(tanimMi(t)){if(!fmtF){fmtF=x;fmtT=t}continue}}if(!f)f=x}
+    if(fmtF){fmtT=fmtT||await metinOku(fmtF);const r=fmtParse(fmtT,s);if(!r.alanSayisi){toast(fmtF.name+': form tanımı okunamadı');return}
       const l=(S.ayarlar.optik||[]).filter(x=>x.ad!==fmtF.name);l.push({ad:fmtF.name,fmt:fmtT});S.ayarlar.optik=l;if(O.role==='yonetici')save();
-      if(!f){toast(`${fmtF.name} form tanımı kaydedildi. Şimdi optik dosyasını (.dat / .txt) seç.`);return}}
+      if(!f){modal('Form tanımı kaydedildi',`<p><b>${esc(fmtF.name)}</b> öğrenci cevaplarını değil, optik formun <b>düzenini</b> (hangi bilginin formun neresinde olduğunu) içeriyor. Kaydedildi; bir daha yüklemen gerekmez.</p><p>Şimdi optik okuyucunun okuma sonunda ürettiği <b>sonuç dosyasını</b> seç. Bu dosyada her satır bir öğrencidir (numara, ad ve cevaplar art arda yazılıdır). Okuyucu programında genelde “Kaydet / Dışa aktar” ile .dat ya da .txt olarak alınır.</p><p class="small muted">Form tanımı: ${fmtParse(fmtT,s).alanSayisi} alan · satır uzunluğu ${fmtParse(fmtT,s).satirUzunlugu} karakter.</p><button class="btn primary" data-act="imp-ac" data-id="${s.id}">Sonuç dosyasını seç</button>`);return}}
     const rows=await dosyaOku(f);
     if(rows.sabit){const k=fmtT?{fmt:fmtT,ad:fmtF.name}:(S.ayarlar.optik||[]).slice(-1)[0];const fk=k&&k.fmt?{...fmtParse(k.fmt,s),fmt:k.ad}:k?{...k}:optikTahmin(rows.lines);
       OPT={sid:s.id,lines:rows.lines,dosya:f.name,f:fk,fmtNot:k&&k.fmt?`Form tanımı: ${k.ad}.`:''};optikRender();return}
@@ -1873,7 +1902,7 @@ const sinifSel=(n,v)=>`<select name="${n}">${SINIFLAR.map(x=>opt(x,x==='Mezun'?'
 const kisiSel=(n,list,v)=>`<select name="${n}" required>${opt('','Seç',v)}${list.map(k=>opt(k,keyAd(k),v)).join('')}</select>`;
 function bursHesap(b,liste){if(!b||!b.tur)return liste;if(b.tutar)return Math.max(0,liste-(+b.tutar||0));return Math.max(0,Math.round(liste*(1-(+b.oran||0)/100)))}
 const BURS_TUR=['Başarı bursu','Kardeş indirimi','Personel yakını','Sosyal burs','Diğer'];
-const bursAlan=(b={})=>`<details class="field"${b.tur?' open':''}><summary>Burs / indirim</summary><div class="fields" style="margin-top:8px">${field('Türü',`<select name="bursTur">${opt('','Yok',b.tur||'')}${BURS_TUR.map(x=>opt(x,x,b.tur||'')).join('')}</select>`)}${field('Oran',`<select name="bursOran">${[10,15,20,25,30,40,50,60,75,100].map(x=>opt(x,x===100?'%100 · tam burs':'%'+x,b.oran||25)).join('')}${opt('tutar','Sabit tutar (taksit başına)',b.tutar?'tutar':'')}</select>`)}</div>${field('Sabit indirim tutarı (taksit başına)',`<input type="number" name="bursTutar" min="0" value="${b.tutar||''}">`,'Sadece “Sabit tutar” seçildiyse')}${field('Not',`<input name="bursNot" value="${esc(b.not||'')}">`)}</div></details>`;
+const bursAlan=(b={},bas='Burs / indirim',acik)=>`<details class="field"${b.tur||acik?' open':''}><summary>${bas}</summary><div class="fields" style="margin-top:8px">${field('Türü',`<select name="bursTur">${opt('','Yok',b.tur||'')}${BURS_TUR.map(x=>opt(x,x,b.tur||'')).join('')}</select>`)}${field('Oran',`<select name="bursOran">${[10,15,20,25,30,40,50,60,75,100].map(x=>opt(x,x===100?'%100 · tam burs':'%'+x,b.oran||25)).join('')}${opt('tutar','Sabit tutar (₺)',b.tutar!=null&&b.tutar!==''?'tutar':'')}</select>`)}</div>${field('Sabit indirim tutarı (₺)',`<input type="number" name="bursTutar" min="0" value="${b.tutar!=null?b.tutar:''}">`,'Sadece “Sabit tutar” seçildiyse; toplam fiyattan düşülür')}${field('Not',`<input name="bursNot" value="${esc(b.not||'')}">`)}</div></details>`;
 const bursOku=f=>f.bursTur?{tur:f.bursTur,...(f.bursOran==='tutar'?{tutar:+f.bursTutar||0}:{oran:+f.bursOran||0}),not:(f.bursNot||'').trim(),tarih:TODAY}:null;
 const noAlan=(v,haric)=>field('Öğrenci no',`<div class="row" style="flex-wrap:nowrap;gap:6px"><input name="no" value="${esc(v||'')}" data-nocheck="${esc(haric||'')}" autocomplete="off"><button class="btn sm" type="button" data-act="no-sirali" title="Sıradaki boş numara">Sıradaki</button></div><div class="nouyari small" style="color:var(--bad)">${v?noUyari(v,haric):''}</div>`);
 function arsiveAl(o,neden,yil,yerlesme){const sb=sube(o.subeId).ad;o.arsiv={tarih:TODAY,yil:yil||TODAY.slice(0,4),neden,sube:sb,...(yerlesme?{yerlesme}:{})};S.ogrenciler=S.ogrenciler.filter(x=>x.id!==o.id);S.arsiv.push(o);
@@ -2002,7 +2031,7 @@ Object.assign(FORM,{
   etutata:(f,el)=>{const e=S.etutler.find(x=>x.id===el.dataset.id);const ids=Object.keys(f).filter(k=>k.startsWith('o_')).map(k=>k.slice(2));const tid=el.dataset.talep;
     const yeniler=ids.filter(i=>!e.ogr.includes(i));const u=etutUyari(e,ids);if(u.length&&!f.zorla){etutAtaModal(e.id,ids,tid,u);return}
     e.ogr.filter(i=>!ids.includes(i)).forEach(i=>bildir('ogrenci:'+i,`${GUN[wd(e.tarih)]} ${fds(e.tarih)} ${e.saat} etüdün iptal edildi.`));
-    e.ogr=ids;yeniler.forEach(i=>{const o=ogr(i);const m=`${GUN[wd(e.tarih)]} ${fds(e.tarih)} ${e.saat} · ${ogt(e.ogretmenId).brans} etüdü (${ogt(e.ogretmenId).ad})`;bildir('ogrenci:'+i,'Etüdün planlandı: '+m);if(o.veliId)bildir('veli:'+o.veliId,`${o.ad.split(' ')[0]} için etüt planlandı: ${m}`,{ogrId:i})});
+    e.ogr=ids;yeniler.forEach(i=>{const o=ogr(i);const m=`${GUN[wd(e.tarih)]} ${fds(e.tarih)} ${e.saat} · ${ogt(e.ogretmenId).brans} etüdü (${ogt(e.ogretmenId).ad})`;bildir('ogrenci:'+i,'Etüdün planlandı: '+m);bildirVeli(o,`${o.ad.split(' ')[0]} için etüt planlandı: ${m}`,{ogrId:i})});
     if(tid){const t=S.talepler.find(x=>x.id===tid);if(t&&ids.includes(t.ogrId))t.durum='atandi'}
     save();closeModal();toast(`${ids.length} öğrenci atandı`);render()},
   talep:f=>{S.talepler.push({id:'tq'+uid(),ogrId:O.id,ders:f.ders,not:(f.not||'').trim(),tarih:TODAY,durum:'acik'});save();closeModal();toast('Talebin rehber öğretmene iletildi');render()},
@@ -2128,7 +2157,7 @@ Object.assign(ACT,{
   'etut-olustur':()=>etutOlusturModal(),
   /* ödev */
   'odev-st':d=>{const h=S.odevler.find(x=>x.id===d.id);const eski=h.teslim[d.ogr];if(d.v==='bekliyor')delete h.teslim[d.ogr];else h.teslim[d.ogr]=d.v;
-    if(eski!==d.v&&(d.v==='eksik'||d.v==='yapmadi')){const o=ogr(d.ogr);const m=`${o.ad.split(' ')[0]} · ${ogt(h.ogretmenId).brans} ödevi “${h.baslik}” ${d.v==='eksik'?'eksik yapıldı':'yapılmadı'}.`;if(o.veliId)bildir('veli:'+o.veliId,m,{ogrId:o.id});bildir('ogrenci:'+o.id,`“${h.baslik}” ödevin ${d.v==='eksik'?'eksik':'yapılmadı'} olarak işaretlendi.`)}
+    if(eski!==d.v&&(d.v==='eksik'||d.v==='yapmadi')){const o=ogr(d.ogr);const m=`${o.ad.split(' ')[0]} · ${ogt(h.ogretmenId).brans} ödevi “${h.baslik}” ${d.v==='eksik'?'eksik yapıldı':'yapılmadı'}.`;bildirVeli(o,m,{ogrId:o.id});bildir('ogrenci:'+o.id,`“${h.baslik}” ödevin ${d.v==='eksik'?'eksik':'yapılmadı'} olarak işaretlendi.`)}
     save();render()},
   'odev-hepsi':d=>{const h=S.odevler.find(x=>x.id===d.id);S.ogrenciler.filter(o=>o.subeId===h.subeId&&!h.teslim[o.id]).forEach(o=>{h.teslim[o.id]='yapti'});save();render()},
   tema:d=>{S.ayarlar.tema={...temaOku(),[d.k]:d.v};save();temaUygula();render()},
@@ -2152,7 +2181,7 @@ Object.assign(FORM,{
   etkinlik:f=>{const h=hedefCoz(f);const e={id:'et'+uid(),baslik:f.baslik.trim(),tur:f.tur,tarih:f.tarih,bitis:f.bitis&&f.bitis>f.tarih?f.bitis:'',saat:f.saat||'',aciklama:(f.aciklama||'').trim(),olusturan:ME(),...(h.keys.length&&!f.h_hepsi?{alicilar:h.keys,hedefAd:h.ad}:{})};
     S.etkinlikler.push(e);if(f.bildir)(h.keys.length?h.keys:tumKisiler()).filter(k=>!benim(k)).forEach(k=>bildir(k,`Takvim: ${e.baslik} · ${fds(e.tarih)}${e.saat?' '+e.saat:''}`));save();closeModal();toast('Etkinlik eklendi');render()},
   sinifdegis:(f,el)=>{const o=ogr(el.dataset.id);const eski=o.subeId;o.subeGecmis=[...(o.subeGecmis||[]),{eski,yeni:f.subeId,tarih:f.tarih||TODAY,neden:(f.neden||'').trim(),yapan:ME()}];o.subeId=f.subeId;
-    if(f.bildir){const m=`${o.ad.split(' ')[0]} ${sube(eski).ad} şubesinden ${sube(f.subeId).ad} şubesine geçti.`;bildir('ogrenci:'+o.id,m);if(o.veliId)bildir('veli:'+o.veliId,m,{ogrId:o.id})}
+    if(f.bildir){const m=`${o.ad.split(' ')[0]} ${sube(eski).ad} şubesinden ${sube(f.subeId).ad} şubesine geçti.`;bildir('ogrenci:'+o.id,m);bildirVeli(o,m,{ogrId:o.id})}
     save();closeModal();toast(`${o.ad} → ${sube(f.subeId).ad}`);render()},
   denduzenle:(f,el)=>{const s=S.sinavlar.find(x=>x.id===el.dataset.id);s.ad=f.ad.trim();s.yayinevi=(f.yayinevi||'').trim();s.tarih=f.tarih||s.tarih;save();closeModal();render()},
   kazanim:(f,el,sub,sessiz)=>{const sid=el.dataset.id,ders=el.dataset.ders,kit=el.dataset.kit;const s=S.sinavlar.find(x=>x.id===sid);const q=turOf(s).dersler.find(([d])=>d===ders)[1];
@@ -2162,7 +2191,7 @@ Object.assign(FORM,{
     if(s.konuMap&&s.konuMap[kit]&&s.konuMap[kit][ders]&&['yonetici','rehber'].includes(O.role)){delete s.konuMap[kit][ders]}
     save();if(!sessiz){closeModal();toast(`${ders} kazanımları kaydedildi`);render()}},
   gorek:(f,el)=>{const g=S.gorusmeler.find(x=>x.id===el.dataset.id);g.ekNotlar=[...(g.ekNotlar||[]),{metin:f.metin.trim(),zaman:nowTime()}];save();closeModal();render()},
-  randevu:f=>{const o=ogr(f.ogrId);const kimler=f.kime==='ikisi'?['veli:'+o.veliId,'ogrenci:'+o.id]:f.kime==='veli'?['veli:'+o.veliId]:['ogrenci:'+o.id];
+  randevu:f=>{const o=ogr(f.ogrId);const kimler=f.kime==='ikisi'?[...veliKeys(o),'ogrenci:'+o.id]:f.kime==='veli'?veliKeys(o):['ogrenci:'+o.id];
     kimler.forEach(k=>{S.randevular.push({id:'rd'+uid()+uid(),ogrId:o.id,kime:k,rehberKey:ME(),tarih:f.tarih,saat:f.saat,konu:f.konu,mesaj:(f.mesaj||'').trim(),durum:'bekliyor',olusturma:nowTime()});
       bildir(k,`${keyAd(ME()).split(' · ')[0]} sizinle ${GUN[wd(f.tarih)]} ${fds(f.tarih)} ${f.saat}'de görüşmek istiyor (${f.konu}). Cevaplamak için ana sayfanıza bakın.`,{ogrId:o.id})});
     save();closeModal();toast('Görüşme talebi gönderildi');render()},
@@ -2183,7 +2212,7 @@ Object.assign(FORM,{
     S.etutler.filter(x=>x.ogretmenId===e.ogretmenId&&x.tarih===e.tarih&&Math.abs(dk(x.saat)-sb_)<(x.sure||30)).forEach(x=>u.push(`${ogt(e.ogretmenId).ad} için ${x.saat}'te zaten bir etüt var.`));
     if(u.length&&!f.zorla){etutOlusturModal({...f,ogr:ids},[...new Set(u)]);return}
     S.etutler.push(e);bildir(ogtKey(ogt(e.ogretmenId)),`Rehber etüt planladı: ${GUN[wd(e.tarih)]} ${fds(e.tarih)} ${e.saat} · ${ids.length} öğrenci`);
-    ids.forEach(i=>{const o=ogr(i);const m=`${GUN[wd(e.tarih)]} ${fds(e.tarih)} ${e.saat} · ${ogt(e.ogretmenId).brans} etüdü (${ogt(e.ogretmenId).ad})`;bildir('ogrenci:'+i,'Etüdün planlandı: '+m);if(o.veliId)bildir('veli:'+o.veliId,`${o.ad.split(' ')[0]} için etüt planlandı: ${m}`,{ogrId:i})});
+    ids.forEach(i=>{const o=ogr(i);const m=`${GUN[wd(e.tarih)]} ${fds(e.tarih)} ${e.saat} · ${ogt(e.ogretmenId).brans} etüdü (${ogt(e.ogretmenId).ad})`;bildir('ogrenci:'+i,'Etüdün planlandı: '+m);bildirVeli(o,`${o.ad.split(' ')[0]} için etüt planlandı: ${m}`,{ogrId:i})});
     save();closeModal();toast('Etüt oluşturuldu');render()},
 });
 
@@ -2198,6 +2227,262 @@ Object.assign(CHG,{
   'demo-rol':v=>{if(!v)return;const [r,i]=v.split(':');O={role:r,id:i,page:NAV[r][0][0]};saveO();render()}
 });
 
+/* ===================== v4.2: kişisel bilgiler, ücret, doğum günleri, ikinci veli ===================== */
+const sinifAd=s=>s?(s==='Mezun'?'Mezun':s+'. sınıf'):'';
+const KS=k=>(S.kisisel&&S.kisisel[k])||{};
+function ksYaz(k,p){if(!S.kisisel)S.kisisel={};const e={...KS(k),...p};Object.keys(e).forEach(x=>{if(e[x]===''||e[x]==null)delete e[x]});if(Object.keys(e).length)S.kisisel[k]=e;else delete S.kisisel[k]}
+const ogtKK=id=>'ogretmen:'+id;
+function telOf(k){const t=KS(k).tel;if(t)return t;const [r,i]=String(k||'').split(':');if(r==='veli'){const v=S.veliler.find(x=>x.id===i);return (v&&v.tel)||''}return ''}
+function telYaz(k,tel){tel=(tel||'').trim();const [r,i]=k.split(':');const v=r==='veli'?S.veliler.find(x=>x.id===i):null;
+  if(ONLINE&&GUNCELLEME7&&v){if(tel)v.tel=tel;else delete v.tel;return}if(v)delete v.tel;ksYaz(k,{tel})}
+function telTasi(){if(ONLINE&&(GUNCELLEME7||O.role!=='yonetici'))return false;let n=0;S.veliler.forEach(v=>{if(v.tel){if(!KS('veli:'+v.id).tel)ksYaz('veli:'+v.id,{tel:v.tel});delete v.tel;n++}});return n>0}
+function telNorm(t){let d=String(t||'').replace(/\D/g,'');if(d.startsWith('00'))d=d.slice(2);if(d.length===11&&d[0]==='0')d='90'+d.slice(1);else if(d.length===10&&d[0]==='5')d='90'+d;return d}
+function araBtn(tel){const n=telNorm(tel);if(n.length<11)return '';return `<a class="btn sm" href="tel:+${n}">📞 Ara</a><a class="btn sm" href="https://wa.me/${n}" target="_blank" rel="noopener">💬 WhatsApp</a>`}
+function araMini(tel){const n=telNorm(tel);if(n.length<11)return '';return `<a href="tel:+${n}" title="Ara: ${esc(tel)}" class="ara-mini">📞</a><a href="https://wa.me/${n}" target="_blank" rel="noopener" title="WhatsApp" class="ara-mini">💬</a>`}
+function veliIdleri(o){return [o&&o.veliId,o&&o.veli2Id].filter(Boolean)}
+function veliKeys(o){return veliIdleri(o).map(i=>'veli:'+i)}
+function bildirVeli(o,metin,ek){veliKeys(o).forEach(k=>bildir(k,metin,ek))}
+
+/* TC kimlik */
+function tcGecerli(t){t=String(t||'');if(!/^[1-9][0-9]{10}$/.test(t))return false;const d=[...t].map(Number);
+  const t10=(((d[0]+d[2]+d[4]+d[6]+d[8])*7-(d[1]+d[3]+d[5]+d[7]))%10+10)%10;if(t10!==d[9])return false;return d.slice(0,10).reduce((a,b)=>a+b,0)%10===d[10]}
+function tcUret(n){const d=String(100000000+(n*7919)%899999999).slice(0,9).split('').map(Number);if(!d[0])d[0]=1;const t10=(((d[0]+d[2]+d[4]+d[6]+d[8])*7-(d[1]+d[3]+d[5]+d[7]))%10+10)%10;d.push(t10);d.push(d.reduce((a,b)=>a+b,0)%10);return d.join('')}
+function tcSahibi(tc,haric){if(!tc)return null;const e=Object.entries(S.kisisel||{}).find(([k,v])=>v&&v.tc===tc&&k!==haric);return e?e[0]:null}
+function tcHata(tc,haric){if(!tc)return '';if(!tcGecerli(tc))return 'TC kimlik numarası geçersiz. 11 haneyi kontrol et.';const s=tcSahibi(tc,haric);if(s){let ad=s;try{ad=keyAd(s).split(' · ')[0]}catch(e){}return 'Bu TC kimlik numarası zaten kayıtlı: '+ad}return ''}
+const tcAlan=(v,k)=>field('TC kimlik no',`<input name="tc" value="${esc(v||'')}" inputmode="numeric" maxlength="11" autocomplete="off" data-tc="${esc(k||'')}"><div class="tcuyari small" style="color:var(--bad)"></div>`);
+
+/* doğum günü */
+const dgAd=dg=>{if(!dg)return '';const [m,g]=dg.split('-').map(Number);return g+' '+AYLAR[m-1]};
+function dgKalan(dg){if(!dg||!/^\d\d-\d\d$/.test(dg))return null;const y=+TODAY.slice(0,4);const [m,g]=dg.split('-').map(Number);
+  const tar=yy=>{let gg=g;if(m===2&&g===29&&!((yy%4===0&&yy%100!==0)||yy%400===0))gg=28;return `${yy}-${String(m).padStart(2,'0')}-${String(gg).padStart(2,'0')}`};
+  let t=tar(y);if(t<TODAY)t=tar(y+1);return daysBetween(TODAY,t)}
+function yas(dogum){if(!dogum)return '';const [y,m,g]=dogum.split('-').map(Number);const [ty,tm,tg]=TODAY.split('-').map(Number);return ty-y-((tm<m||(tm===m&&tg<g))?1:0)}
+function personelDg(){const L=S.ogretmenler.filter(t=>t.dg).map(t=>({k:ogtKey(t),ad:t.ad,dg:t.dg,alt:t.rehber?'Rehber':t.brans}));
+  Object.entries(S.ayarlar.dgYon||{}).forEach(([k,dg])=>{if(dg)L.push({k,ad:yonAd(k),dg,alt:'Yönetim'})});return L}
+function benimDg(){const [r,i]=ME().split(':');if(r==='yonetici')return (S.ayarlar.dgYon||{})[ME()];if(r==='ogrenci')return ogr(i).dg;if(r==='ogretmen'||r==='rehber'){const t=S.ogretmenler.find(x=>x.id===i);return t&&t.dg}return null}
+function kutlama(ad,siz){return `<div class="card dg-kart dg-buyuk"><span class="dg-e" aria-hidden="true">🎉</span><div><h2 style="margin:0">İyi ki doğdun${siz?'uz':''}, ${esc(ad)}!</h2><p style="margin:4px 0 0">${esc(S.ayarlar.kurum)} ailesi olarak doğum gününü kutlar, ${siz?'sağlıklı ve mutlu bir yaş dileriz.':'yeni yaşında bütün hedeflerine ulaşmanı dileriz.'} 🎂</p></div></div>`}
+function dgKutu(){const r=O.role;
+  if(r==='ogrenci'){const o=ogr(O.id);return o.dg&&dgKalan(o.dg)===0?kutlama(o.ad.split(' ')[0]):''}
+  if(r==='veli')return veli(O.id).cocuklar.map(ogr).filter(o=>o&&o.dg&&dgKalan(o.dg)===0&&S.ogrenciler.some(x=>x.id===o.id)).map(o=>`<div class="card dg-kart"><span class="dg-e" aria-hidden="true">🎂</span><div><b>Doğum günü kutlu olsun, ${esc(o.ad.split(' ')[0])}!</b><p class="small muted" style="margin:2px 0 0">${esc(S.ayarlar.kurum)} ailesi olarak nice mutlu yıllar dileriz.</p></div></div>`).join('');
+  const bd=benimDg();let h=bd&&dgKalan(bd)===0?kutlama(benAd().split(' ')[0],true):'';
+  let ogs=S.ogrenciler;if(r==='ogretmen'){const subs=new Set(S.dersler.filter(d=>d.ogretmenId===O.id).map(d=>d.subeId));ogs=ogs.filter(o=>subs.has(o.subeId))}
+  const L=[...ogs.filter(o=>o.dg).map(o=>({k:'ogrenci:'+o.id,ad:o.ad,dg:o.dg,alt:sube(o.subeId).ad})),...personelDg().filter(x=>!benim(x.k))]
+    .map(x=>({...x,n:dgKalan(x.dg)})).filter(x=>x.n!=null&&x.n<=7).sort((a,b)=>a.n-b.n||a.ad.localeCompare(b.ad,'tr'));
+  if(L.length){let ks;try{ks=new Set(kisiler())}catch(e){ks=new Set()}
+    h+=`<div class="card"><h2>🎂 Doğum günleri · önümüzdeki 7 gün</h2><table>${L.map(x=>`<tr><td><b>${esc(x.ad)}</b> <span class="small muted">${esc(x.alt)}</span></td><td>${x.n===0?'<span class="tag acc">Bugün</span>':x.n===1?'Yarın':`${esc(dgAd(x.dg))} <span class="small muted">· ${x.n} gün sonra</span>`}</td><td class="num">${x.n===0&&ks.has(x.k)?`<button class="btn sm" data-act="dg-mesaj" data-k="${esc(x.k)}">Kutla</button>`:''}</td></tr>`).join('')}</table></div>`}
+  return h}
+
+/* öğretmen sözleşmesi */
+function sozlesmeYaklasan(){return S.ogretmenler.map(t=>({t,b:KS(ogtKK(t.id)).sozBit})).filter(x=>x.b&&daysBetween(TODAY,x.b)<=30&&daysBetween(TODAY,x.b)>=-60).sort((a,b)=>a.b<b.b?-1:1)}
+const sozTag=b=>{if(!b)return '';const n=daysBetween(TODAY,b);return n<0?`<span class="tag bad">${-n} gün önce bitti</span>`:n===0?'<span class="tag bad">Bugün bitiyor</span>':n<=30?`<span class="tag ${n<=7?'bad':'n'}">${n} gün kaldı</span>`:''};
+function sozlesmeKutu(){if(O.role!=='yonetici')return '';const l=sozlesmeYaklasan();if(!l.length)return '';
+  return `<div class="card"><div class="between"><h2 style="margin:0">Sözleşmesi biten ya da bitmek üzere olan öğretmenler</h2><a href="#" class="small" data-act="go" data-page="kurum">Öğretmenler</a></div><table style="margin-top:8px">${l.map(({t,b})=>`<tr><td><b>${esc(t.ad)}</b> <span class="small muted">${esc(t.brans)}</span></td><td>${fd(b)}</td><td>${sozTag(b)}</td><td class="num"><button class="btn sm" data-act="ogt-duzenle" data-id="${t.id}">Uzat / düzenle</button></td></tr>`).join('')}</table></div>`}
+function otoHatirlat(){if(O.role!=='yonetici')return false;let ch=false;sozlesmeYaklasan().forEach(({t,b})=>{const n=daysBetween(TODAY,b);if(n<0)return;const id='soz_'+t.id+'_'+b+'_'+ME();
+  if(!S.bildirimler.some(x=>x.id===id)){S.bildirimler.push({id,kime:ME(),zaman:nowTime(),metin:`${t.ad} (${t.brans}) öğretmenin sözleşmesi ${fd(b)} tarihinde bitiyor (${n} gün kaldı).`});ch=true}});return ch}
+['panel','bugun','rpanel','oana','vana'].forEach(p=>{const f=PAGES[p];if(!f)return;PAGES[p]=a=>{const h=f(a);let ek='';try{if(p==='panel'&&otoHatirlat())save();ek=dgKutu()+(p==='panel'?sozlesmeKutu():'')}catch(e){hataKaydet('dg: '+e.message)}return ek?h.replace('<!--/h-->','<!--/h-->'+ek):h}});
+
+/* ücret: toplam → indirim → peşinat → taksit */
+function indirimTutar(b,toplam){if(!b||!b.tur)return 0;if(b.tutar!=null&&b.tutar!=='')return Math.min(toplam,Math.max(0,Math.round(+b.tutar||0)));return Math.min(toplam,Math.round(toplam*(+b.oran||0)/100))}
+const bursEtiket=b=>b&&b.tur?`${b.tur} · ${b.tutar!=null&&b.tutar!==''?tl(b.tutar):'%'+b.oran}`:'';
+function ucret(id){const tk=S.taksitler.filter(t=>t.ogrId===id).sort((a,b)=>a.vade<b.vade?-1:a.vade>b.vade?1:(b.pesinat?1:0)-(a.pesinat?1:0));
+  const odenen=tk.filter(t=>t.odendi).reduce((a,t)=>a+(+t.tutar||0),0);const planli=tk.reduce((a,t)=>a+(+t.tutar||0),0);const u=(S.ucretler||{})[id];
+  if(u&&u.toplam!=null){const ind=Math.min(+u.toplam||0,+u.indirim||0);const net=Math.max(0,(+u.toplam||0)-ind);return {u,toplam:+u.toplam||0,indirim:ind,indirimAd:u.indirimAd||'',net,odenen,kalan:Math.max(0,net-odenen),planDisi:net-planli,tk}}
+  const toplam=tk.reduce((a,t)=>a+(+(t.liste||t.tutar)||0),0);return {u:null,toplam,indirim:toplam-planli,indirimAd:bursEtiket(S.burslar[id]),net:planli,odenen,kalan:Math.max(0,planli-odenen),planDisi:0,tk}}
+function ucretBelirle(id,toplam){const b=S.burslar[id];toplam=Math.max(0,Math.round(+toplam||0));if(!S.ucretler)S.ucretler={};const e=S.ucretler[id];
+  S.ucretler[id]={toplam,indirim:indirimTutar(b,toplam),...(b&&b.tur?{indirimAd:bursEtiket(b)}:{}),tarih:(e&&e.tarih)||TODAY}}
+function ayEkle(s,n){const [y,m,g]=s.split('-').map(Number);const t=new Date(y,m-1+n,1,12);const son=new Date(t.getFullYear(),t.getMonth()+1,0,12).getDate();return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(Math.min(g,son)).padStart(2,'0')}`}
+const ilkVade=()=>ayEkle(TODAY.slice(0,8)+'15',1);
+function dagit(kalan,adet){adet=Math.floor(+adet||0);kalan=Math.round(+kalan||0);if(adet<=0||kalan<=0)return [];let b=Math.floor(kalan/adet);if(adet>1&&b>=100)b=Math.floor(b/10)*10;const l=new Array(adet).fill(b);l[0]+=kalan-b*adet;return l}
+function taksitlendir(id,p){const x=ucret(id);S.taksitler=S.taksitler.filter(t=>!(t.ogrId===id&&!t.odendi));let kalan=Math.max(0,x.net-x.odenen);
+  const pes=Math.min(Math.max(0,Math.round(+p.pesinat||0)),kalan);const alindi=p.psekil&&p.psekil!=='sonra';
+  if(pes>0){S.taksitler.push({id:uid()+uid(),ogrId:id,vade:TODAY,tutar:pes,pesinat:true,odendi:alindi?TODAY:null,...(alindi?{sekil:p.psekil}:{})});kalan-=pes}
+  const l=dagit(kalan,Math.min(36,+p.adet||0));const ilk=p.ilk||ilkVade();l.forEach((t,i)=>S.taksitler.push({id:uid()+uid(),ogrId:id,vade:ayEkle(ilk,i),tutar:t,odendi:null}));
+  return {pes,adet:l.length,kalan:kalan-l.reduce((a,b)=>a+b,0)}}
+function yenidenDagit(id){const x=ucret(id);const ac=x.tk.filter(t=>!t.odendi);if(!ac.length)return 0;const kalan=Math.max(0,x.net-x.odenen);
+  if(kalan<=0){S.taksitler=S.taksitler.filter(t=>!(t.ogrId===id&&!t.odendi));return ac.length}
+  const l=dagit(kalan,ac.length);ac.forEach((t,i)=>{t.tutar=l[i];delete t.liste});return ac.length}
+const yenidenChk=id=>{const n=S.taksitler.filter(t=>t.ogrId===id&&!t.odendi).length;return n?`<label class="chk" style="margin:4px 0 12px"><input type="checkbox" name="yeniden" checked> Ödenmemiş ${n} taksiti yeni tutara göre yeniden hesapla</label><br>`:''};
+const ucretAlan=(b={},toplam='',p={})=>`<div class="ucret-kutu"><h3 class="fh" style="margin-top:0">Ücret</h3>${field('Toplam fiyat (₺)',`<input type="number" name="toplam" min="0" step="1" value="${toplam}" placeholder="Örn. 48000">`,'İndirimden önceki fiyat')}${bursAlan(b,'İndirim yap')}
+  <details class="field"${p.adet?' open':''}><summary>Taksitlendir</summary><div class="fields" style="margin-top:8px">${field('Peşinat (₺)',`<input type="number" name="pesinat" min="0" placeholder="0">`)}${field('Peşinat ödemesi',`<select name="psekil">${opt('nakit','Bugün alındı · Nakit','nakit')}${opt('kart','Bugün alındı · Kart','')}${opt('sonra','Henüz alınmadı','')}</select>`)}</div>
+  <div class="fields">${field('Taksit sayısı',`<input type="number" name="adet" min="0" max="36" placeholder="Örn. 8" value="${p.adet||''}">`)}${field('İlk taksit tarihi',`<input type="date" name="ilk" value="${p.ilk||ilkVade()}">`,'Sonrakiler her ay aynı gün')}</div></details>
+  <div class="ucret-oz small" data-ucret-oz></div></div>`;
+function ucretOnizle(f){const el=f&&f.querySelector('[data-ucret-oz]');if(!el)return;const q=n=>{const i=f.querySelector(`[name="${n}"]`);return i?i.value:null};
+  const odenen=+f.dataset.odenen||0;let net,ind=0,toplam=null;
+  if(f.dataset.kalan!=null)net=(+f.dataset.kalan||0)+odenen;
+  else{toplam=q('toplam')!=null?(+q('toplam')||0):(+f.dataset.toplam||0);let b=null;
+    if(q('bursTur')!=null)b=q('bursTur')?{tur:q('bursTur'),...(q('bursOran')==='tutar'?{tutar:+q('bursTutar')||0}:{oran:+q('bursOran')||0})}:null;else{try{b=JSON.parse(f.dataset.burs||'null')}catch(e){}}
+    ind=indirimTutar(b,toplam);net=toplam-ind}
+  const kal=Math.max(0,net-odenen);const pes=Math.min(kal,Math.max(0,+(q('pesinat')||0)));const adet=+(q('adet')||0);const l=dagit(kal-pes,adet);const p=[];
+  if(toplam!=null){if(!toplam){el.innerHTML='<span class="muted">Toplam fiyatı yazınca özet burada görünür.</span>';return}p.push(`Toplam <b>${tl(toplam)}</b>`);if(ind)p.push(`İndirim <b>−${tl(ind)}</b>`);p.push(`Net <b>${tl(net)}</b>`)}
+  if(odenen)p.push(`Ödenen <b>${tl(odenen)}</b>`);if(odenen||toplam==null)p.push(`Kalan <b>${tl(kal)}</b>`);if(pes)p.push(`Peşinat <b>${tl(pes)}</b>`);
+  if(q('adet')!=null){if(l.length)p.push(`<b>${l.length} taksit</b>: ${l.length>1&&l[0]!==l[1]?tl(l[0])+' + '+(l.length-1)+' × '+tl(l[1]):l.length+' × '+tl(l[0])}`);else if(kal-pes>0)p.push(`<span class="muted">${tl(kal-pes)} taksitlendirilmedi</span>`)}
+  el.innerHTML=p.join(' · ')}
+function ucretKart(id){const x=ucret(id);const b=S.burslar[id];const ar=!S.ogrenciler.some(o=>o.id===id);const yuz=x.net?Math.round(x.odenen/x.net*100):0;const gec=x.tk.filter(t=>!t.odendi&&t.vade<TODAY);let n=0;
+  return `<div class="card" style="margin:16px 0"><div class="between"><h2 style="margin:0">Ücret</h2><div class="row">${ar?'':`<button class="btn sm" data-act="ucret-fiyat" data-id="${id}">${x.toplam?'Fiyatı değiştir':'Toplam fiyat gir'}</button><button class="btn sm" data-act="ucret-indirim" data-id="${id}">İndirim yap</button><button class="btn sm" data-act="ucret-taksit" data-id="${id}">Taksitlendir</button>`}<button class="btn sm" data-act="sozlesme" data-id="${id}">Kayıt sözleşmesi</button></div></div>
+  ${x.toplam||x.tk.length?`<div class="stats" style="margin:12px 0 8px">${stat('Toplam fiyat',tl(x.toplam))}${stat('İndirim',x.indirim?tl(x.indirim):'—',esc(b?bursEtiket(b):x.indirimAd)+(b&&b.not?' · '+esc(b.not):''))}${stat('Ödenen',tl(x.odenen),'%'+yuz)}${stat('Kalan',tl(x.kalan),gec.length?`<span style="color:var(--bad)">${gec.length} taksit gecikti</span>`:'')}</div><div class="bar"><i style="width:${Math.min(100,yuz)}%"></i></div>
+  ${x.planDisi>0.5?`<p class="note" style="margin-top:10px">${tl(x.planDisi)} henüz taksitlendirilmedi. <a href="#" data-act="ucret-taksit" data-id="${id}">Taksitlendir</a></p>`:''}${x.planDisi<-0.5?`<p class="note" style="margin-top:10px">Taksitlerin toplamı net ücretten ${tl(-x.planDisi)} fazla. “Taksitlendir” ile yeniden düzenleyebilirsin.</p>`:''}
+  <details style="margin-top:10px"${x.tk.length&&x.tk.length<=2?' open':''}><summary class="small">Taksitler (${x.tk.length})</summary><div class="tw"><table>${x.tk.map(t=>`<tr><td>${t.pesinat?'<b>Peşinat</b>':(++n)+'. taksit'}</td><td>${fd(t.vade)}</td><td class="num">${t.liste&&t.liste!==t.tutar?`<s class="muted small">${tl(t.liste)}</s> `:''}${tl(t.tutar)}</td><td>${t.odendi?`<span class="tag ok">Ödendi · ${t.sekil==='kart'?'Kart':'Nakit'} · ${fds(t.odendi)}</span>`:t.vade<TODAY?`<span class="tag bad">${daysBetween(t.vade,TODAY)} gün gecikti</span>`:'<span class="tag n">Bekliyor</span>'}</td><td class="num">${t.odendi?`<button class="btn sm" data-act="odendi" data-id="${t.id}">Düzenle</button>`:`<div class="row" style="justify-content:flex-end;flex-wrap:nowrap"><button class="btn sm" data-act="odendi" data-id="${t.id}" data-v="nakit">Nakit</button><button class="btn sm" data-act="odendi" data-id="${t.id}" data-v="kart">Kart</button></div>`}</td></tr>`).join('')||`<tr><td>${empty(b&&+b.oran===100?'Tam burslu':'Taksit yok')}</td></tr>`}</table></div></details>`:empty('Ücret bilgisi girilmemiş. “Toplam fiyat gir” ile başla.')}</div>`}
+function planModal(id){const x=id?ucret(id):null;
+  modal('Ücret ve taksit planı',`<form data-form="plan" data-ucret${x?` data-odenen="${x.odenen}"`:''}>${field('Öğrenci',ogrSel('ogrId',id).replace('<select ','<select data-chg="plan-ogr" '))}${id?`${x.odenen?`<p class="note">Bu öğrenciden ${tl(x.odenen)} tahsil edildi; ödenmiş taksitler korunur, ödenmemişler yeni plana göre yeniden oluşturulur.</p>`:''}${(()=>{const ac=x.tk.filter(t=>!t.odendi&&!t.pesinat);return ucretAlan(S.burslar[id]||{},x.toplam||'',{adet:ac.length||'',ilk:ac[0]&&ac[0].vade})})()}<button class="btn primary" type="submit">Kaydet</button>`:'<p class="small muted">Önce öğrenciyi seç.</p>'}</form>`);
+  if(id)ucretOnizle($('#modal-box form'))}
+
+/* öğrenci formu */
+function ogrAlanlar(o,f){o.sinif=f.sinif||'';o.okul=(f.okul||'').trim();o.dg=f.dogum&&/^\d{4}-\d\d-\d\d$/.test(f.dogum)?f.dogum.slice(5):'';['sinif','okul','dg'].forEach(k=>{if(!o[k])delete o[k]})}
+function veli2Kaydet(o,f){const ad=(f.veli2||'').trim();const eski=o.veli2Id?S.veliler.find(v=>v.id===o.veli2Id):null;
+  if(!ad){if(eski){eski.cocuklar=eski.cocuklar.filter(c=>c!==o.id);if(!eski.cocuklar.length){S.veliler=S.veliler.filter(v=>v.id!==eski.id);delete S.kisisel['veli:'+eski.id];hesaplariSil([['veli',eski.id]])}}delete o.veli2Id;return}
+  let v=eski;if(!v){v={id:'v'+uid(),ad,cocuklar:[o.id]};S.veliler.push(v);o.veli2Id=v.id}
+  v.ad=ad;if(f.yak2)v.yakinlik=f.yak2;else delete v.yakinlik;telYaz('veli:'+v.id,f.tel2)}
+function ogrForm(o,yeni){o=o||{};const k=o.id?'ogrenci:'+o.id:'';const ks=o.id?KS(k):{};const v1=o.veliId?veli(o.veliId):{};const v2=o.veli2Id?veli(o.veli2Id):{};
+  const okullar=[...new Set([...S.ogrenciler,...(S.arsiv||[])].map(x=>(x.okul||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'tr'));
+  const yak=(n,v)=>`<select name="${n}">${opt('','—',v||'')}${['Anne','Baba','Vasi','Diğer'].map(x=>opt(x,x,v||'')).join('')}</select>`;
+  return `<form data-form="${yeni?'ogrenci':'ogrduzenle'}"${o.id?` data-id="${o.id}"`:''}${yeni?' data-ucret':''}>
+  <h3 class="fh" style="margin-top:0">Öğrenci</h3>${field('Ad soyad',`<input name="ad" value="${esc(o.ad||'')}" required>`)}
+  <div class="fields">${noAlan(yeni?siradakiNo():o.no,o.id||'')}${field('Şube',subeSel('subeId',o.subeId||''))}</div>
+  <div class="fields">${field('Sınıf seviyesi',`<select name="sinif">${opt('','Seç',o.sinif||'')}${SINIFLAR.map(x=>opt(x,sinifAd(x),o.sinif||'')).join('')}</select>`)}${field('Okuduğu okul',`<input name="okul" list="okul-list" value="${esc(o.okul||'')}" placeholder="Örn. Halıcılar Lisesi" autocomplete="off"><datalist id="okul-list">${okullar.map(x=>`<option value="${esc(x)}">`).join('')}</datalist>`,'Mezunsa mezun olduğu okul')}</div>
+  ${field('Hedef',`<input name="hedef" value="${esc(o.hedef||'')}" placeholder="Örn. Hukuk">`)}
+  <div class="fields">${tcAlan(ks.tc,k)}${field('Doğum tarihi',`<input type="date" name="dogum" value="${esc(ks.dogum||'')}" max="${TODAY}">`)}</div>
+  ${field('Adres',`<textarea name="adres" style="min-height:52px">${esc(ks.adres||'')}</textarea>`,'TC, doğum yılı, adres ve telefonları sadece yönetici görür. Öğretmenler sadece doğum gününü (gün ve ay) görür.')}
+  <h3 class="fh">Veli</h3>${yeni?field('Mevcut veli',`<select name="veliMevcut">${opt('','Yeni veli (aşağıya yaz)','')}${S.veliler.filter(v=>v.cocuklar.some(c=>S.ogrenciler.some(x=>x.id===c&&x.veliId===v.id))).map(v=>opt(v.id,v.ad+' · '+v.cocuklar.map(c=>ogr(c).ad.split(' ')[0]).join(', ')+' velisi','')).join('')}</select>`,'Kardeş kaydıysa mevcut veliyi seç; ikinci veli de otomatik bağlanır'):''}
+  <div class="fields">${field(yeni?'Veli adı soyadı':'Veli adı soyadı',`<input name="veli" value="${esc(v1.ad||'')}">`)}${field('Telefon',`<input name="tel" inputmode="tel" value="${esc(o.veliId?telOf('veli:'+o.veliId):'')}" placeholder="05xx xxx xx xx">`)}${field('Yakınlık',yak('yak',v1.yakinlik))}</div>
+  <details class="field"${v2.ad&&v2.ad!=='?'?' open':''}><summary>İkinci veli</summary><div class="fields" style="margin-top:8px">${field('Ad soyad',`<input name="veli2" value="${esc(o.veli2Id?v2.ad:'')}">`)}${field('Telefon',`<input name="tel2" inputmode="tel" value="${esc(o.veli2Id?telOf('veli:'+o.veli2Id):'')}">`)}${field('Yakınlık',yak('yak2',v2.yakinlik))}</div><p class="small muted" style="margin:0">İkinci veli de kendi şifresiyle girer, bildirimleri alır. Hesabını Kullanıcılar sayfasından aç.</p></details>
+  ${yeni?ucretAlan():''}<button class="btn primary" type="submit">Kaydet</button></form>`}
+function ogrBilgiKart(o,rol){const y=rol==='yonetici';const ks=y?KS('ogrenci:'+o.id):{};const vs=veliIdleri(o).map(i=>S.veliler.find(v=>v.id===i)).filter(Boolean);
+  const sat=(l,v)=>v?`<dt>${l}</dt><dd>${v}</dd>`:'';
+  return `<div class="card"><h3>Öğrenci ve veli</h3><dl class="kv kv-dar">${sat('No',esc(o.no||''))}${sat('Kayıt',fd(o.kayit))}${sat('Sınıf',esc(sinifAd(o.sinif)))}${sat('Okul',esc(o.okul||''))}${sat('Doğum',y&&ks.dogum?fd(ks.dogum)+` <span class="muted small">(${yas(ks.dogum)} yaş)</span>`:o.dg?esc(dgAd(o.dg)):'')}${y?sat('TC',esc(ks.tc||'')):''}${y?sat('Adres',esc(ks.adres||'')):''}</dl>
+  ${(o.subeGecmis||[]).length?`<p class="small muted">Şube geçmişi: ${o.subeGecmis.map(x=>`${esc(sube(x.eski).ad)} → ${esc(sube(x.yeni).ad)} (${fds(x.tarih)}${x.neden?', '+esc(x.neden):''})`).join(' · ')}</p>`:''}
+  ${vs.map(v=>{const tel=y?telOf('veli:'+v.id):'';return `<div style="border-top:1px solid var(--line2);padding-top:8px;margin-top:8px"><b>${esc(v.ad)}</b>${v.yakinlik?` <span class="small muted">· ${esc(v.yakinlik)}</span>`:''}${tel?`<br><span class="small muted">${esc(tel)}</span><div class="row" style="margin-top:6px">${araBtn(tel)}</div>`:''}</div>`}).join('')}</div>`}
+
+/* öğretmen formu */
+function ogtForm(t){t=t||{};const k=t.id?ogtKK(t.id):'';const ks=t.id?KS(k):{};
+  return `<form data-form="${t.id?'ogtduzenle':'ogretmen'}"${t.id?` data-id="${t.id}"`:''}><div class="fields">${field('Ad soyad',`<input name="ad" value="${esc(t.ad||'')}" required>`)}${field('Branş',`<input name="brans" value="${esc(t.brans||'')}" required placeholder="Örn. Matematik">`)}</div>
+  ${t.id?(t.rehber?'<p class="small muted">Rehber öğretmen / psikolojik danışman</p>':''):`<div class="field"><label style="font-weight:400;display:flex;gap:8px;align-items:center"><input type="checkbox" name="rehber" style="width:auto"> Rehber öğretmen / psikolojik danışman</label><div class="hint">İşaretlenirse rehberlik paneline erişir; görüşme notlarını sadece rehberler görür.</div></div>`}
+  <h3 class="fh">Kişisel bilgiler <span class="small muted" style="font-weight:400">· sadece yönetici görür</span></h3>
+  <div class="fields">${tcAlan(ks.tc,k)}${field('Doğum tarihi',`<input type="date" name="dogum" value="${esc(ks.dogum||'')}" max="${TODAY}">`,'Diğerleri sadece gün ve ayı görür')}</div>
+  ${field('Telefon',`<input name="tel" inputmode="tel" value="${esc(ks.tel||'')}" placeholder="05xx xxx xx xx">`)}${field('Adres',`<textarea name="adres" style="min-height:52px">${esc(ks.adres||'')}</textarea>`)}
+  <h3 class="fh">Sözleşme</h3><div class="fields">${field('Başlangıç',`<input type="date" name="sozBas" value="${esc(ks.sozBas||'')}">`)}${field('Bitiş',`<input type="date" name="sozBit" value="${esc(ks.sozBit||'')}">`,'Bitmesine 30 gün kala sana bildirim gelir')}</div>
+  <button class="btn primary" type="submit">${t.id?'Kaydet':'Ekle'}</button></form>`}
+function ogtKaydet(t,f){const k=ogtKK(t.id);t.ad=f.ad.trim();t.brans=f.brans.trim();if(f.dogum&&/^\d{4}-\d\d-\d\d$/.test(f.dogum))t.dg=f.dogum.slice(5);else delete t.dg;
+  ksYaz(k,{tc:(f.tc||'').trim(),dogum:f.dogum||'',tel:(f.tel||'').trim(),adres:(f.adres||'').trim(),sozBas:f.sozBas||'',sozBit:f.sozBit||''})}
+
+PAGES.kurum=()=>head('Şube ve öğretmen','',`<button class="btn" data-act="sube-yeni">Şube ekle</button><button class="btn primary" data-act="ogt-yeni">Öğretmen ekle</button>`)+
+  `<div class="card flush"><h2>Öğretmenler</h2><div class="tw"><table><tr><th>Ad</th><th>Branş</th><th>Doğum günü</th><th>Sözleşme</th><th class="num">Ders</th><th></th></tr>${S.ogretmenler.map(t=>{const n=S.dersler.filter(d=>d.ogretmenId===t.id).length;const ks=KS(ogtKK(t.id));return `<tr><td><span data-act="foto-modal" data-k="${ogtKey(t)}" style="cursor:pointer" title="Fotoğraf">${av(ogtKey(t),t.ad,26)}</span> <b>${esc(t.ad)}</b> ${araMini(ks.tel)}</td><td>${esc(t.brans)}${t.rehber?' <span class="tag acc">Rehber</span>':''}</td><td>${t.dg?esc(dgAd(t.dg))+(dgKalan(t.dg)===0?' 🎂':''):'<span class="muted">—</span>'}</td><td>${ks.sozBit?`${fds(ks.sozBas||'')}${ks.sozBas?' – ':''}${fd(ks.sozBit)} ${sozTag(ks.sozBit)}`:'<span class="muted">—</span>'}</td><td class="num">${n}</td><td class="num"><div class="row" style="justify-content:flex-end;flex-wrap:nowrap"><button class="btn sm" data-act="ogt-duzenle" data-id="${t.id}">Düzenle</button><button class="link" data-act="ogt-sil" data-id="${t.id}">Sil</button></div></td></tr>`}).join('')||`<tr><td colspan="6">${empty('Henüz öğretmen yok.')}</td></tr>`}</table></div></div>
+  <div class="card flush"><h2>Şubeler</h2><table><tr><th>Şube</th><th>Kademe</th><th class="num">Öğrenci</th><th></th></tr>${S.subeler.map(s=>{const n=S.ogrenciler.filter(o=>o.subeId===s.id).length;return `<tr><td><b>${esc(s.ad)}</b></td><td>${esc(s.kademe)} · ${esc(s.alan)}</td><td class="num">${n}</td><td class="num">${n?'':`<button class="link" data-act="sube-sil" data-id="${s.id}">Sil</button>`}</td></tr>`}).join('')||`<tr><td colspan="4">${empty('Henüz şube yok.')}</td></tr>`}</table></div>
+  <p class="small muted" style="margin-top:12px">Öğrenci eklemek için <a href="#" data-act="go" data-page="ogrenciler">Öğrenciler</a>, giriş şifreleri için <a href="#" data-act="go" data-page="kullanicilar">Kullanıcılar</a> sayfasına git.</p>`;
+
+/* kayıt sözleşmesi */
+const SOZ_VARSAYILAN=`Kurum, kayıt yapılan eğitim yılı boyunca öğrencinin şubesine ait ders programını, deneme sınavlarını ve rehberlik hizmetlerini sağlar.
+Ücret yukarıdaki ödeme planına göre ödenir. Vadesi geçen taksitler için kurum veliyi bilgilendirir.
+Kayıt iptali ve ücret iadesi talepleri yazılı olarak yapılır; iade, kurumun ilan ettiği koşullar ve ilgili mevzuat çerçevesinde hesaplanır.
+Veli ve öğrenci, kişisel verilerin KVKK aydınlatma metni kapsamında eğitim hizmetinin yürütülmesi amacıyla işlenmesini kabul eder.
+Öğrenci, kurumun devam ve disiplin kurallarına uymayı kabul eder.
+Bu sözleşme iki nüsha olarak düzenlenmiş, taraflarca okunarak imzalanmıştır.`;
+function sozlesmeHtml(id){const o=ogr(id);const ks=KS('ogrenci:'+id);const vs=veliIdleri(o).map(i=>S.veliler.find(v=>v.id===i)).filter(Boolean);const x=ucret(id);const b=S.burslar[id];const A=S.ayarlar;
+  const madde=(A.sozlesmeMetni||SOZ_VARSAYILAN).split(/\n+/).map(s=>s.trim()).filter(Boolean);
+  const sat=(l,v)=>`<tr><th style="width:30%;text-align:left;background:#f4f4f4">${l}</th><td>${v?esc(v):'&nbsp;'}</td></tr>`;let n=0;
+  return `<div class="pk sozlesme"><div style="display:flex;justify-content:space-between;align-items:center;gap:16px"><div>${logoHtml(46)}</div><div style="text-align:right"><b>${esc(A.kurum)}</b>${A.kurumAdres?'<br><span class="small">'+esc(A.kurumAdres)+'</span>':''}${A.kurumTel?'<br><span class="small">'+esc(A.kurumTel)+'</span>':''}</div></div>
+  <h2 style="text-align:center;margin:14px 0 2px;font-size:19px">ÖĞRENCİ KAYIT SÖZLEŞMESİ</h2><p class="small" style="text-align:center;margin:0 0 12px">${esc(egitimYili())} eğitim yılı · Kayıt tarihi: ${fd(o.kayit||TODAY)}</p>
+  <h3 style="margin:10px 0 4px">1. Öğrenci bilgileri</h3><table class="pt">${sat('Ad soyad',o.ad)}${sat('TC kimlik no',ks.tc)}${sat('Doğum tarihi',fd(ks.dogum))}${sat('Sınıf · okul',[sinifAd(o.sinif),o.okul].filter(Boolean).join(' · '))}${sat('Şube · öğrenci no',sube(o.subeId).ad+(o.no?' · '+o.no:''))}${sat('Adres',ks.adres)}</table>
+  <h3 style="margin:10px 0 4px">2. Veli bilgileri</h3><table class="pt">${vs.length?vs.map((v,i)=>sat((i?'İkinci veli':'Veli')+(v.yakinlik?' ('+esc(v.yakinlik)+')':''),v.ad+(telOf('veli:'+v.id)?' · '+telOf('veli:'+v.id):''))).join(''):sat('Veli','')}</table>
+  <h3 style="margin:10px 0 4px">3. Ücret ve ödeme planı</h3><table class="pt">${sat('Toplam fiyat',tl(x.toplam))}${x.indirim?sat('İndirim'+((b&&b.tur)||x.indirimAd?' ('+esc(b&&b.tur?bursEtiket(b):x.indirimAd)+')':''),'− '+tl(x.indirim)):''}${sat('Ödenecek tutar',tl(x.net))}</table>
+  ${x.tk.length?(()=>{const it=x.tk.map(t=>[t.pesinat?'Peşinat':(++n)+'. taksit',fd(t.vade)+(t.odendi?' ✓':''),tl(t.tutar)]);const K=it.length>4?3:1;const rows=[];for(let i=0;i<it.length;i+=K)rows.push(it.slice(i,i+K));
+    return `<table class="pt" style="margin-top:6px"><tr>${Array.from({length:K},()=>'<th style="text-align:left">Ödeme</th><th style="text-align:left">Vade</th><th style="text-align:right">Tutar</th>').join('')}</tr>${rows.map(r=>`<tr>${Array.from({length:K},(_,j)=>r[j]?`<td>${r[j][0]}</td><td>${r[j][1]}</td><td style="text-align:right">${r[j][2]}</td>`:'<td></td><td></td><td></td>').join('')}</tr>`).join('')}</table>${x.tk.some(t=>t.odendi)?'<p class="small" style="margin:2px 0 0">✓ ödendi</p>':''}`})():''}
+  <h3 style="margin:12px 0 4px">4. Genel şartlar</h3><ol style="margin:0;padding-left:20px;font-size:12.5px">${madde.map(m=>`<li style="margin-bottom:3px">${esc(m)}</li>`).join('')}</ol>
+  <div style="display:flex;justify-content:space-between;gap:40px;margin-top:44px;page-break-inside:avoid"><div style="flex:1;text-align:center;border-top:1px solid #333;padding-top:6px">Veli<br><span class="small">${esc(vs[0]?vs[0].ad:'')}</span><br><span class="small">Tarih · imza</span></div><div style="flex:1;text-align:center;border-top:1px solid #333;padding-top:6px">Kurum yetkilisi<br><span class="small">${esc(A.kurum)}</span><br><span class="small">Kaşe · imza</span></div></div></div>`}
+{const _pa=PAGES.ayarlar;PAGES.ayarlar=a=>{const h=_pa(a);const A=S.ayarlar;return h+`<div class="card" style="margin-top:16px;max-width:760px"><h2>Kayıt sözleşmesi</h2><form data-form="sozayar"><div class="fields">${field('Kurum adresi',`<input name="kurumAdres" value="${esc(A.kurumAdres||'')}">`)}${field('Kurum telefonu',`<input name="kurumTel" value="${esc(A.kurumTel||'')}">`)}</div>${field('Genel şartlar (her satır bir madde)',`<textarea name="metin" style="min-height:170px">${esc(A.sozlesmeMetni||SOZ_VARSAYILAN)}</textarea>`,'Öğrenci sayfasındaki “Kayıt sözleşmesi” düğmesiyle yazdırılır. Hukuki metni kendi avukatına/danışmanına kontrol ettir.')}<div class="row"><button class="btn primary" type="submit">Kaydet</button><button class="btn" type="button" data-act="soz-varsayilan">Varsayılan metne dön</button></div></form></div>`}}
+
+/* Hesabım: yöneticinin doğum günü */
+{const _sif=ACT.sifrem;ACT.sifrem=(...a)=>{const r=_sif(...a);if(O.role!=='yonetici')return r;const box=$('#modal-box');if(!box)return r;const dg=(S.ayarlar.dgYon||{})[ME()]||'';const [m,g]=dg?dg.split('-').map(Number):['',''];
+  box.insertAdjacentHTML('beforeend',`<form data-form="dgyon" style="margin-top:16px;border-top:1px solid var(--line2);padding-top:12px"><h3>Doğum günün</h3><p class="small muted" style="margin-top:0">Öğretmenler gün ve ayı görür, kutlayabilir.</p><div class="fields">${field('Gün',`<select name="g">${opt('','—',g)}${Array.from({length:31},(_,i)=>opt(i+1,i+1,g)).join('')}</select>`)}${field('Ay',`<select name="m">${opt('','—',m)}${AYLAR.map((x,i)=>opt(i+1,x,m)).join('')}</select>`)}</div><button class="btn" type="submit">Kaydet</button></form>`);return r}}
+
+/* okul raporu */
+function okulGruplari(){const m=new Map();S.ogrenciler.forEach(o=>{const ad=(o.okul||'').trim();const k=ad?norm(ad):'~';if(!m.has(k))m.set(k,{ad:ad||'(Okul girilmemiş)',l:[]});m.get(k).l.push(o)});return [...m.values()].sort((a,b)=>(a.ad==='(Okul girilmemiş)')-(b.ad==='(Okul girilmemiş)')||b.l.length-a.l.length||a.ad.localeCompare(b.ad,'tr'))}
+const sinifDagilim=l=>SINIFLAR.map(s=>[s,l.filter(o=>o.sinif===s).length]).filter(x=>x[1]).map(([s,n])=>`${sinifAd(s)} ${n}`).join(' · ');
+
+/* demo verisi (4.2) */
+function demo42(D){if(!D.kisisel)D.kisisel={};if(!D.ucretler)D.ucretler={};if(!D.ogrenciler.some(o=>o.id==='o1'))return;
+  const OK=['Halıcılar Lisesi','Atatürk Anadolu Lisesi','Gazi Lisesi'];const ys=+TODAY.slice(0,4);
+  D.ogrenciler.forEach((o,i)=>{const lgs=o.subeId==='s8a';if(!o.sinif)o.sinif=lgs?'8':(i===5||i===11?'Mezun':'12');if(!o.okul)o.okul=lgs?(i%2?'Cumhuriyet Ortaokulu':'Fatih Ortaokulu'):OK[i%3];
+    const dg=o.id==='o1'?TODAY.slice(5):o.id==='o5'?addDays(TODAY,3).slice(5):o.id==='o14'?addDays(TODAY,6).slice(5):addDays(TODAY,30+i*19).slice(5);if(!o.dg)o.dg=dg;
+    const yil=(lgs?ys-14:o.sinif==='Mezun'?ys-19:ys-18);const k='ogrenci:'+o.id;if(!D.kisisel[k])D.kisisel[k]={tc:tcUret(i+11),dogum:`${yil}-${o.dg==='02-29'?'02-28':o.dg}`,adres:['Merkez Mah. Okul Sk. No: '+(i+3),'Yeni Mah. Çınar Cd. No: '+(i+10)+'/2','Cumhuriyet Mah. Gül Sk. No: '+(i+1)][i%3]+' · Halıcılar'};
+    const tk=D.taksitler.filter(t=>t.ogrId===o.id);if(tk.length&&!D.ucretler[o.id]){const top=tk.reduce((a,t)=>a+(t.liste||t.tutar),0),net=tk.reduce((a,t)=>a+t.tutar,0);const b=(D.burslar||{})[o.id];D.ucretler[o.id]={toplam:top,indirim:top-net,...(b?{indirimAd:bursEtiket(b)}:{}),tarih:o.kayit||TODAY}}});
+  D.veliler.forEach((v,i)=>{const k='veli:'+v.id;if(!D.kisisel[k]&&!v.tel)D.kisisel[k]={tel:`05${32+i%8} ${String(100+i*37).slice(-3)} ${String(10+i*7).slice(-2)} ${String(20+i*3).slice(-2)}`};if(!v.yakinlik&&v.ad&&v.ad!=='?')v.yakinlik=i%3===1?'Baba':'Anne'});
+  const o1=D.ogrenciler.find(o=>o.id==='o1');if(o1&&!o1.veli2Id&&!D.veliler.some(v=>v.id==='vb1')){D.veliler.push({id:'vb1',ad:'Murat Yıldız',yakinlik:'Baba',cocuklar:D.ogrenciler.filter(o=>o.veliId===o1.veliId).map(o=>o.id)});D.ogrenciler.filter(o=>o.veliId===o1.veliId).forEach(o=>o.veli2Id='vb1');D.kisisel['veli:vb1']={tel:'0533 410 27 65'}}
+  const yb=TODAY.slice(5)>='08-15'?ys:ys-1;
+  D.ogretmenler.forEach((t,i)=>{const k=ogtKK(t.id);if(!t.dg)t.dg=t.id==='t3'?addDays(TODAY,2).slice(5):addDays(TODAY,45+i*53).slice(5);if(!D.kisisel[k])D.kisisel[k]={tc:tcUret(i+101),dogum:`${1978+i*3}-${t.dg==='02-29'?'02-28':t.dg}`,tel:`05${41+i} 2${i}${i} 1${i} ${30+i}`,adres:'Halıcılar · Öğretmen evleri No: '+(i+1),sozBas:`${yb}-09-01`,sozBit:t.id==='t4'?addDays(TODAY,18):`${yb+1}-06-30`}});
+  if(!D.ayarlar.dgYon)D.ayarlar.dgYon={'yonetici:y1':addDays(TODAY,5).slice(5)};
+  if(!D.ayarlar.kurumAdres){D.ayarlar.kurumAdres='Cumhuriyet Mah. Eğitim Cd. No: 12 · Halıcılar';D.ayarlar.kurumTel='0 (232) 555 12 34'}}
+
+Object.assign(ACT,{
+  'ogr-yeni':()=>!S.subeler.length?toast('Önce bir şube ekle (Şube ve öğretmen sayfası)'):(modal('Öğrenci ekle',ogrForm({},true)),ucretOnizle($('#modal-box form'))),
+  'ogr-duzenle':d=>modal('Öğrenciyi düzenle',ogrForm(ogr(d.id),false)),
+  'ogr-sil':d=>ask(`${ogr(d.id).ad} kaydı tamamen silinsin mi? Taksitleri, deneme sonuçları ve giriş hesabı da silinir. Mezun olan ya da ayrılan öğrenci için “Arşive al” kullan; geçmişi korunur.`,async()=>{
+    const o=ogr(d.id);const sil=[['ogrenci',d.id]];
+    S.ogrenciler=S.ogrenciler.filter(x=>x.id!==d.id);veliIdleri(o).forEach(vi=>{const v=S.veliler.find(x=>x.id===vi);if(!v)return;v.cocuklar=v.cocuklar.filter(c=>c!==d.id);if(!v.cocuklar.length){S.veliler=S.veliler.filter(x=>x.id!==v.id);delete S.kisisel['veli:'+v.id];sil.push(['veli',v.id])}});
+    S.taksitler=S.taksitler.filter(t=>t.ogrId!==d.id);S.sonuclar=S.sonuclar.filter(r=>r.ogrId!==d.id);delete S.burslar[d.id];delete S.ucretler[d.id];delete S.kisisel['ogrenci:'+d.id];delete S.fotolar['ogrenci:'+d.id];S.etutler.forEach(e=>{e.ogr=e.ogr.filter(x=>x!==d.id)});S.odevler.forEach(h=>{delete h.teslim[d.id]});
+    if(!ONLINE)S.checkinler=S.checkinler.filter(c=>c.ogrId!==d.id);
+    save();toast('Kayıt silindi');go('ogrenciler');await hesaplariSil(sil)}),
+  'ogt-yeni':()=>modal('Öğretmen ekle',ogtForm()),
+  'ogt-duzenle':d=>{const t=S.ogretmenler.find(x=>x.id===d.id);if(t)modal('Öğretmen · '+t.ad,ogtForm(t))},
+  'ucret-fiyat':d=>{const x=ucret(d.id);modal('Toplam fiyat · '+ogr(d.id).ad,`<form data-form="ucretfiyat" data-id="${d.id}" data-ucret data-odenen="${x.odenen}" data-burs="${esc(JSON.stringify(S.burslar[d.id]||null))}">${field('Toplam fiyat (₺)',`<input type="number" name="toplam" min="0" value="${x.toplam||''}" required>`,'İndirimden önceki fiyat')}<div class="ucret-oz small" data-ucret-oz style="margin-bottom:10px"></div>${yenidenChk(d.id)}<button class="btn primary" type="submit">Kaydet</button></form>`);ucretOnizle($('#modal-box form'))},
+  'ucret-indirim':d=>{const x=ucret(d.id);if(!x.toplam){toast('Önce toplam fiyatı gir');ACT['ucret-fiyat'](d);return}
+    modal('İndirim · '+ogr(d.id).ad,`<form data-form="ucretindirim" data-id="${d.id}" data-ucret data-odenen="${x.odenen}" data-toplam="${x.toplam}">${bursAlan(S.burslar[d.id]||{},'İndirim / burs',true)}<div class="ucret-oz small" data-ucret-oz style="margin-bottom:10px"></div>${yenidenChk(d.id)}<button class="btn primary" type="submit">Kaydet</button></form>`);ucretOnizle($('#modal-box form'))},
+  'ucret-taksit':d=>{const x=ucret(d.id);const kalan=Math.max(0,x.net-x.odenen);const ac=x.tk.filter(t=>!t.odendi);
+    if(!x.toplam&&!x.tk.length){toast('Önce toplam fiyatı gir');ACT['ucret-fiyat'](d);return}
+    modal('Taksitlendir · '+ogr(d.id).ad,`<form data-form="ucrettaksit" data-id="${d.id}" data-ucret data-kalan="${kalan}"><p>Net <b>${tl(x.net)}</b> · Ödenen <b>${tl(x.odenen)}</b> · Taksitlendirilecek <b>${tl(kalan)}</b></p>
+    <div class="fields">${field('Peşinat (₺)',`<input type="number" name="pesinat" min="0" placeholder="0">`)}${field('Peşinat ödemesi',`<select name="psekil">${opt('nakit','Bugün alındı · Nakit','nakit')}${opt('kart','Bugün alındı · Kart','')}${opt('sonra','Henüz alınmadı','')}</select>`)}</div>
+    <div class="fields">${field('Taksit sayısı',`<input type="number" name="adet" min="0" max="36" value="${ac.filter(t=>!t.pesinat).length||8}">`)}${field('İlk taksit tarihi',`<input type="date" name="ilk" value="${(ac.find(t=>!t.pesinat)||{}).vade||ilkVade()}">`)}</div>
+    <div class="ucret-oz small" data-ucret-oz style="margin-bottom:10px"></div>${ac.length?`<p class="small muted">Ödenmemiş ${ac.length} taksit silinip yeni plana göre oluşturulur. Ödenmiş taksitler korunur.</p>`:''}<button class="btn primary" type="submit">Taksitleri oluştur</button></form>`);ucretOnizle($('#modal-box form'))},
+  'plan-yeni':d=>planModal(d&&d.id||''),
+  sozlesme:d=>yazdir(sozlesmeHtml(d.id)),
+  'soz-varsayilan':()=>{const t=$('textarea[name=metin]');if(t)t.value=SOZ_VARSAYILAN},
+  'dg-mesaj':d=>{O.f_mtab='kisi';O.f_kisi=d.k;go('mesajlar');const ta=$('form.composer textarea');if(ta){ta.value='Doğum günün kutlu olsun! Nice mutlu yıllara 🎂';ta.focus()}},
+  'okul-rapor':()=>{const L=okulGruplari();const sv=SINIFLAR.map(s=>[s,S.ogrenciler.filter(o=>o.sinif===s).length]).filter(x=>x[1]);
+    modal('Okul raporu',`<p class="small muted">${S.ogrenciler.length} aktif öğrenci · ${L.filter(x=>x.ad!=='(Okul girilmemiş)').length} farklı okul</p><div class="tw"><table><tr><th>Okul</th><th class="num">Öğrenci</th><th>Sınıflar</th></tr>${L.map(x=>`<tr><td><b>${esc(x.ad)}</b></td><td class="num">${x.l.length}</td><td class="small muted">${sinifDagilim(x.l)}</td></tr>`).join('')||`<tr><td colspan="3">${empty('Öğrenci yok.')}</td></tr>`}</table></div>${sv.length?`<h3>Sınıf seviyesine göre</h3><p>${sv.map(([s,n])=>`${sinifAd(s)}: <b>${n}</b>`).join(' · ')}</p>`:''}<div class="row" style="margin-top:12px"><button class="btn" data-act="okul-excel">Excel indir</button></div>`)},
+  'okul-excel':async()=>{const L=okulGruplari();await excelIndir('okul-raporu',[['Okul','Öğrenci',...SINIFLAR.map(sinifAd)],...L.map(x=>[x.ad,x.l.length,...SINIFLAR.map(s=>x.l.filter(o=>o.sinif===s).length)])])},
+  'oakt-sablon':async()=>{await excelIndir('ogrenci-sablonu',[['No','Ad Soyad','Şube','Sınıf Seviyesi','Okul','TC Kimlik No','Doğum Tarihi','Adres','Veli Ad Soyad','Veli Telefon','Veli 2 Ad Soyad','Veli 2 Telefon','Hedef'],['1001','Örnek Öğrenci',S.subeler[0]?S.subeler[0].ad:'12-A','12','Halıcılar Lisesi','','2008-05-14','Merkez Mah. ...','Örnek Veli','05xx xxx xx xx','','','Tıp']])},
+  'oakt-onay':()=>{const {yeni}=oaktHesap();let n=0;
+    yeni.forEach(x=>{let sb=subeBul(x.sb);if(!sb){sb={id:'s'+uid(),ad:x.sb,kademe:/^[5-8]/.test(x.sb.trim())?'LGS':'YKS',alan:''};S.subeler.push(sb)}
+      const id='o'+uid();let v=x.veli?S.veliler.find(v=>adAnahtar(v.ad)===adAnahtar(x.veli)&&(!x.tel||!telOf('veli:'+v.id)||telNorm(telOf('veli:'+v.id))===telNorm(x.tel))):null;
+      if(v){v.cocuklar.push(id);if(x.tel&&!telOf('veli:'+v.id))telYaz('veli:'+v.id,x.tel)}else{v={id:'v'+uid(),ad:x.veli||x.ad+' · Velisi',cocuklar:[id]};S.veliler.push(v);if(x.tel)telYaz('veli:'+v.id,x.tel)}
+      let no=x.no;if(!no&&OAKT.otoNo!==false)no=siradakiNo();const o={id,no,ad:x.ad,subeId:sb.id,veliId:v.id,hedef:x.hedef,kayit:TODAY};ogrAlanlar(o,{sinif:x.sinif,okul:x.okul,dogum:x.dogum});S.ogrenciler.push(o);
+      if(x.veli2){const sib=S.ogrenciler.find(k=>k.id!==id&&k.veliId===v.id&&k.veli2Id&&adAnahtar(veli(k.veli2Id).ad)===adAnahtar(x.veli2));if(sib){o.veli2Id=sib.veli2Id;veli(sib.veli2Id).cocuklar.push(id);if(x.tel2&&!telOf('veli:'+sib.veli2Id))telYaz('veli:'+sib.veli2Id,x.tel2)}else veli2Kaydet(o,{veli2:x.veli2,tel2:x.tel2})}
+      ksYaz('ogrenci:'+id,{tc:x.tc,dogum:x.dogum,adres:x.adres});n++});
+    save();closeModal();OAKT=null;toast(`${n} öğrenci eklendi`);render()},
+  'ogr-excel':async()=>{const y=O.role==='yonetici';await excelIndir('ogrenci-listesi',[['No','Ad Soyad','Şube','Sınıf Seviyesi','Okul','Hedef',...(y?['TC Kimlik No','Doğum Tarihi','Adres']:[]),'Veli','Veli Telefon','Veli 2','Veli 2 Telefon','Kayıt'],...[...S.ogrenciler].sort(subeSirali).map(o=>{const v=veli(o.veliId),v2=o.veli2Id?veli(o.veli2Id):null;const ks=KS('ogrenci:'+o.id);
+    return [o.no||'',o.ad,sube(o.subeId).ad,o.sinif||'',o.okul||'',o.hedef||'',...(y?[ks.tc||'',ks.dogum||'',ks.adres||'']:[]),v.ad,y?telOf('veli:'+o.veliId):'',v2?v2.ad:'',v2&&y?telOf('veli:'+o.veli2Id):'',o.kayit||'']})])}
+});
+Object.assign(FORM,{
+  ogrenci:f=>{const no=(f.no||'').trim();if(no&&noSahibi(no)){toast(noUyari(no).replace(/&#39;/g,"'"));return}if(!no){toast('Öğrenci numarası boş olamaz (Sıradaki’ne bas)');return}
+    const tc=(f.tc||'').trim();const th=tcHata(tc,'');if(th){toast(th);return}
+    const id='o'+uid();let vid;
+    if(f.veliMevcut){vid=f.veliMevcut;veli(vid).cocuklar.push(id)}else{if(!(f.veli||'').trim()){toast('Veli adını yaz ya da mevcut veliyi seç');return}vid='v'+uid();S.veliler.push({id:vid,ad:f.veli.trim(),...(f.yak?{yakinlik:f.yak}:{}),cocuklar:[id]});telYaz('veli:'+vid,f.tel)}
+    const o={id,no,ad:f.ad.trim(),subeId:f.subeId,veliId:vid,hedef:(f.hedef||'').trim(),kayit:TODAY};ogrAlanlar(o,f);S.ogrenciler.push(o);
+    const sib=f.veliMevcut&&!(f.veli2||'').trim()?S.ogrenciler.find(k=>k.id!==id&&k.veliId===vid&&k.veli2Id):null;
+    if(sib){o.veli2Id=sib.veli2Id;const v2=S.veliler.find(v=>v.id===sib.veli2Id);if(v2&&!v2.cocuklar.includes(id))v2.cocuklar.push(id)}else veli2Kaydet(o,f);
+    ksYaz('ogrenci:'+id,{tc,dogum:f.dogum||'',adres:(f.adres||'').trim()});
+    const b=bursOku(f);if(b)S.burslar[id]=b;const toplam=+f.toplam||0;let m='Öğrenci eklendi';
+    if(toplam>0){ucretBelirle(id,toplam);const r=taksitlendir(id,f);m+=r.adet?` · ${r.adet} taksit oluşturuldu`:r.pes?' · peşinat kaydedildi':''}
+    save();closeModal();toast(m);go('ogrenciler:'+id)},
+  ogrduzenle:(f,el)=>{const o=ogr(el.dataset.id);const no=(f.no||'').trim();if(no&&noSahibi(no,o.id)){toast('Bu numara başka öğrencide var');return}
+    const k='ogrenci:'+o.id;const tc=(f.tc||'').trim();const th=tcHata(tc,k);if(th){toast(th);return}
+    o.ad=f.ad.trim();o.no=no;o.subeId=f.subeId;o.hedef=(f.hedef||'').trim();ogrAlanlar(o,f);
+    const v=S.veliler.find(x=>x.id===o.veliId);if(v){if((f.veli||'').trim())v.ad=f.veli.trim();if(f.yak)v.yakinlik=f.yak;else delete v.yakinlik;telYaz('veli:'+v.id,f.tel)}
+    veli2Kaydet(o,f);ksYaz(k,{tc,dogum:f.dogum||'',adres:(f.adres||'').trim()});save();closeModal();toast('Kaydedildi');render()},
+  ogretmen:f=>{const tc=(f.tc||'').trim();const th=tcHata(tc,'');if(th){toast(th);return}const t={id:'t'+uid(),ad:'',brans:'',...(f.rehber?{rehber:true}:{})};ogtKaydet(t,f);S.ogretmenler.push(t);save();closeModal();toast('Öğretmen eklendi');render()},
+  ogtduzenle:(f,el)=>{const t=S.ogretmenler.find(x=>x.id===el.dataset.id);if(!t)return;const tc=(f.tc||'').trim();const th=tcHata(tc,ogtKK(t.id));if(th){toast(th);return}ogtKaydet(t,f);save();closeModal();toast('Kaydedildi');render()},
+  ucretfiyat:(f,el)=>{const id=el.dataset.id;ucretBelirle(id,+f.toplam||0);const n=f.yeniden?yenidenDagit(id):0;save();closeModal();toast('Toplam fiyat kaydedildi'+(n?` · ${n} taksit yeniden hesaplandı`:''));render()},
+  ucretindirim:(f,el)=>{const id=el.dataset.id;const x=ucret(id);const b=bursOku(f);const eski=S.burslar[id];if(b)S.burslar[id]={...b,tarih:eski&&eski.tur===b.tur?eski.tarih:TODAY};else delete S.burslar[id];
+    ucretBelirle(id,x.toplam);const n=f.yeniden?yenidenDagit(id):0;save();closeModal();toast((b?'İndirim uygulandı':'İndirim kaldırıldı')+(n?` · ${n} taksit yeniden hesaplandı`:''));render()},
+  ucrettaksit:(f,el)=>{const id=el.dataset.id;if(!(S.ucretler||{})[id]){const x=ucret(id);ucretBelirle(id,x.toplam)}const r=taksitlendir(id,f);save();closeModal();toast(r.adet||r.pes?`${r.pes?'Peşinat + ':''}${r.adet} taksit oluşturuldu`:'Ödenmemiş taksitler kaldırıldı');render()},
+  plan:f=>{const id=f.ogrId;if(!id){toast('Öğrenci seç');return}const toplam=+f.toplam||0;if(!toplam){toast('Toplam fiyatı yaz');return}
+    const b=bursOku(f);const eski=S.burslar[id];if(b)S.burslar[id]={...b,tarih:eski&&eski.tur===b.tur?eski.tarih:TODAY};else delete S.burslar[id];ucretBelirle(id,toplam);
+    let m='Ücret kaydedildi';if(+f.adet>0||+f.pesinat>0){const r=taksitlendir(id,f);m+=` · ${r.adet} taksit oluşturuldu`}else{const n=yenidenDagit(id);if(n)m+=` · ${n} taksit yeniden hesaplandı`}
+    save();closeModal();toast(m);render()},
+  sozayar:f=>{const t=(f.metin||'').trim();S.ayarlar={...S.ayarlar,kurumAdres:(f.kurumAdres||'').trim(),kurumTel:(f.kurumTel||'').trim()};if(!t||t===SOZ_VARSAYILAN.trim())delete S.ayarlar.sozlesmeMetni;else S.ayarlar.sozlesmeMetni=t;save();toast('Sözleşme ayarları kaydedildi');render()},
+  dgyon:f=>{const d={...(S.ayarlar.dgYon||{})};if(f.g&&f.m)d[ME()]=String(f.m).padStart(2,'0')+'-'+String(f.g).padStart(2,'0');else delete d[ME()];S.ayarlar={...S.ayarlar,dgYon:d};save();toast('Kaydedildi');ACT.sifrem()}
+});
+Object.assign(CHG,{'plan-ogr':v=>planModal(v)});
+
 /* ---------- olaylar ---------- */
 document.addEventListener('click',e=>{
   if(e.target.id==='modal'){closeModal();return}
@@ -2208,6 +2493,8 @@ document.addEventListener('submit',e=>{const f=e.target.closest('form[data-form]
 document.addEventListener('change',e=>{const a=e.target.closest('[data-chg]');if(a&&CHG[a.dataset.chg])Promise.resolve().then(()=>CHG[a.dataset.chg](a.value,a)).catch(err=>{console.error(err);toast('Hata: '+err.message)})});
 document.addEventListener('input',e=>{
   const t=e.target;
+  if(t.dataset.tc!==undefined){const u=t.closest('.field').querySelector('.tcuyari');if(u){const v=t.value.trim();u.textContent=v.length>=11?tcHata(v,t.dataset.tc):''}}
+  {const uf=t.closest('form[data-ucret]');if(uf)ucretOnizle(uf)}
   if(t.dataset.nocheck!==undefined){const u=t.closest('.field').querySelector('.nouyari');if(u)u.innerHTML=noUyari(t.value,t.dataset.nocheck)}
   if(t.dataset.filter){const q=lower(t.value);document.querySelectorAll(t.dataset.filter).forEach(r=>{r.style.display=lower(r.textContent).includes(q)?'':'none'})}
   const row=t.closest('tr[data-netrow]');if(row){const T=turOf(S.sinavlar.find(x=>x.id===row.dataset.netrow));let tot=0,any=false;T.dersler.forEach(([ad])=>{const g=row.querySelector(`input[name$="|${ad}|d"]`),b=row.querySelector(`input[name$="|${ad}|y"]`);const d=parseInt(g.value,10),y=parseInt(b.value,10);if(!isNaN(d)||!isNaN(y))any=true;tot+=(isNaN(d)?0:d)-(isNaN(y)?0:y)/T.f});row.querySelector('[data-net]').textContent=any?nf(tot):'—'}

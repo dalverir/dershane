@@ -367,7 +367,7 @@ const SUNUCU = {
   url: 'https://ukoxvhkkqwxhwbrkpxdr.supabase.co',
   anahtar: 'sb_publishable_fkB7MTdx_DVlSd_Nr0ZwtA_vCq2UOTl'
 };
-const SURUM='4.4.0';
+const SURUM='4.4.1';
 /* Tanıtım sayfasındaki ürün bilgisi ve iletişim (giriş öncesi görünür) */
 const URUN = {
   ad: 'DALVERİR',
@@ -2839,7 +2839,7 @@ const etutKonuEtiket=e=>e.konu||e.unite?`<span class="small"><b>${esc(e.konu||''
 function duyuruKitlesi(d){if(d.alicilar)return d.alicilar;const L=[];S.ogrenciler.forEach(o=>{const s=sube(o.subeId);if(d.hedef==='hepsi'||d.hedef===s.kademe||d.hedef===s.id){L.push('ogrenci:'+o.id);veliKeys(o).forEach(k=>L.push(k))}});return [...new Set(L)]}
 
 /* ===================== v4.4: dolu demo verisi ===================== */
-function demo44(D){if(D._d44||!D.ogrenciler.some(o=>o.id==='o1'))return;D._d44=1;
+function demo44(D){if(D._d44||!D.ogrenciler.some(o=>o.id==='o1')||D.ogrenciler.some(o=>o.id==='o19'))return;D._d44=1;
   let sd=97;const r=()=>{sd=(sd*16807)%2147483647;return (sd-1)/2147483646};const t0=new Date(TODAY+'T12:00:00');const yil=t0.getMonth()>=7?t0.getFullYear():t0.getFullYear()-1;
   const eS=S;S=D;try{
   D.ayarlar.gunler={1:{acik:true,bas:'09:00',bit:'17:30',sure:40,ten:10},2:{acik:true,bas:'09:00',bit:'17:30',sure:40,ten:10},3:{acik:true,bas:'09:00',bit:'17:30',sure:40,ten:10},4:{acik:true,bas:'09:00',bit:'17:30',sure:40,ten:10},5:{acik:true,bas:'09:00',bit:'17:30',sure:40,ten:10},6:{acik:false,bas:'10:00',bit:'14:00',sure:40,ten:10},0:{acik:false,bas:'10:00',bit:'14:00',sure:40,ten:10}};
@@ -3081,6 +3081,16 @@ Object.assign(CHG,{
   'eo-ogt':(v,el)=>{const dl=el.closest('form').querySelector('#etk-konu-l');if(dl&&v)dl.innerHTML=konuSecenek(ogt(v).brans,'12')+konuSecenek(ogt(v).brans,'8')},
   'ders-gun':(v,el)=>{const dl=el.closest('form').querySelector('#ders-saat-l');if(dl)dl.innerHTML=gunSlotlari(+v).map(x=>`<option value="${x}">`).join('')}
 });
+
+
+/* canlı sistemde demo veriyi genişlet (test dönemi) */
+const demoGenisletilebilir=()=>O&&O.role==='yonetici'&&S.ogrenciler.some(o=>o.id==='o1'&&o.ad==='Elif Yıldız')&&!S.ogrenciler.some(o=>o.id==='o19');
+{const _pa=PAGES.ayarlar;PAGES.ayarlar=a=>{const h=_pa(a);if(!demoGenisletilebilir())return h;
+  return `<div class="card" style="border-color:var(--accent)"><div class="between"><div><h2 style="margin:0">Demo veriyi genişlet</h2><p class="small muted" style="margin:4px 0 0">Sistemde ilk kurulumdaki küçük demo verisi var. Genişletince 3 şube (11-A, Mezun-SAY, 8-B), 6 öğretmen, 20 öğrenci, dolu ders programı, yoklamalar, deneme sonuçları, ödevler, konulu etütler, etüt talepleri, duyurular, yıllık planlar, görevler ve takvim etkinlikleri eklenir. Mevcut kayıtlar silinmez.</p></div><button class="btn primary" data-act="demo-genislet">Genişlet</button></div></div>`+h}}
+ACT['demo-genislet']=()=>ask('Demo veri genişletilsin mi? Yeni şubeler, öğretmenler, öğrenciler ve bunlara ait kayıtlar sunucuya eklenir; mevcut kayıtlar silinmez.',()=>{
+  const msOnce=new Set(S.mesajlar.map(m=>m.id));demo44(S);demo42(S);
+  const ben=anahtarlarim();S.mesajlar=S.mesajlar.filter(m=>msOnce.has(m.id)||ben.includes(m.from));
+  save();toast('Demo veri genişletildi; sunucuya kaydediliyor…');render()});
 
 /* ---------- olaylar ---------- */
 document.addEventListener('click',e=>{
